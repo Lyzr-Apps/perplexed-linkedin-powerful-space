@@ -182,9 +182,11 @@ export default function Home() {
         AGENT_IDS.contentIntelligenceManager
       )
 
-      if (intelligenceResult.success && intelligenceResult.response.status === 'success') {
+      if (intelligenceResult.success && intelligenceResult.response?.status === 'success') {
         const intelligence = intelligenceResult.response.intelligence
-        setContentIntelligence(intelligence)
+        if (intelligence) {
+          setContentIntelligence(intelligence)
+        }
       }
 
       // Call Network Discovery Agent
@@ -193,28 +195,30 @@ export default function Home() {
         AGENT_IDS.networkDiscoveryAgent
       )
 
-      if (networkResult.success && networkResult.response.status === 'success') {
+      if (networkResult.success && networkResult.response?.status === 'success') {
         const insights = networkResult.response.network_insights
-        setNetworkInsights(insights)
+        if (insights) {
+          setNetworkInsights(insights)
 
-        // Generate mock feed posts from network insights
-        if (insights.relevant_profiles) {
-          const mockPosts: FeedPost[] = insights.relevant_profiles.slice(0, 3).map((profile, idx) => ({
-            id: `feed-${idx}`,
-            author: {
-              name: profile.name,
-              headline: profile.headline
-            },
-            content: `Excited to share my latest thoughts on ${profile.common_interests[0]}. The landscape is evolving rapidly and I believe we're at a critical inflection point.\n\nKey insights:\n1. Innovation is accelerating\n2. Teams need to adapt quickly\n3. The future is collaborative\n\nWhat are your thoughts on this trend?`,
-            timestamp: `${idx + 2}h ago`,
-            hashtags: profile.common_interests.slice(0, 3),
-            engagementMetrics: {
-              likes: Math.floor(Math.random() * 200) + 50,
-              comments: Math.floor(Math.random() * 30) + 5,
-              shares: Math.floor(Math.random() * 20) + 2
-            }
-          }))
-          setFeedPosts(mockPosts)
+          // Generate mock feed posts from network insights
+          if (insights.relevant_profiles && Array.isArray(insights.relevant_profiles)) {
+            const mockPosts: FeedPost[] = insights.relevant_profiles.slice(0, 3).map((profile, idx) => ({
+              id: `feed-${idx}`,
+              author: {
+                name: profile.name,
+                headline: profile.headline
+              },
+              content: `Excited to share my latest thoughts on ${profile.common_interests?.[0] || 'innovation'}. The landscape is evolving rapidly and I believe we're at a critical inflection point.\n\nKey insights:\n1. Innovation is accelerating\n2. Teams need to adapt quickly\n3. The future is collaborative\n\nWhat are your thoughts on this trend?`,
+              timestamp: `${idx + 2}h ago`,
+              hashtags: profile.common_interests?.slice(0, 3) || [],
+              engagementMetrics: {
+                likes: Math.floor(Math.random() * 200) + 50,
+                comments: Math.floor(Math.random() * 30) + 5,
+                shares: Math.floor(Math.random() * 20) + 2
+              }
+            }))
+            setFeedPosts(mockPosts)
+          }
         }
       }
 
@@ -224,9 +228,11 @@ export default function Home() {
         AGENT_IDS.linkedInProfileAnalyzer
       )
 
-      if (profileResult.success && profileResult.response.status === 'success') {
+      if (profileResult.success && profileResult.response?.status === 'success') {
         const profile = profileResult.response.profile
-        setUserProfile(profile)
+        if (profile) {
+          setUserProfile(profile)
+        }
       }
     } catch (err) {
       console.error('Error loading dashboard:', err)
@@ -244,9 +250,11 @@ export default function Home() {
         AGENT_IDS.linkedInProfileAnalyzer
       )
 
-      if (result.success && result.response.status === 'success') {
+      if (result.success && result.response?.status === 'success') {
         const profile = result.response.profile
-        setUserProfile(profile)
+        if (profile) {
+          setUserProfile(profile)
+        }
       }
     } catch (err) {
       console.error('Error refreshing profile:', err)
@@ -318,62 +326,64 @@ export default function Home() {
 
       const result = await callAIAgent(inputMessage, AGENT_IDS.researchContentManager)
 
-      if (result.success && result.response.status === 'success') {
+      if (result.success && result.response?.status === 'success') {
         const responseData = result.response.result
 
-        // Extract generated content
-        let content = ''
-        let extractedCitations: Citation[] = []
-        let wordCount = 0
-        let hashtags: string[] = []
+        if (responseData) {
+          // Extract generated content
+          let content = ''
+          let extractedCitations: Citation[] = []
+          let wordCount = 0
+          let hashtags: string[] = []
 
-        // Handle response structure from test data
-        if (responseData.generated_content?.post_preview) {
-          content = responseData.generated_content.post_preview
-          wordCount = responseData.generated_content.word_count || 0
-        } else if (responseData.post_content) {
-          content = responseData.post_content
-          wordCount = responseData.word_count || 0
+          // Handle response structure from test data
+          if (responseData.generated_content?.post_preview) {
+            content = responseData.generated_content.post_preview
+            wordCount = responseData.generated_content.word_count || 0
+          } else if (responseData.post_content) {
+            content = responseData.post_content
+            wordCount = responseData.word_count || 0
+          }
+
+          // Extract citations
+          if (responseData.citations && Array.isArray(responseData.citations)) {
+            extractedCitations = responseData.citations
+          }
+
+          // Extract hashtags
+          if (responseData.hashtags && Array.isArray(responseData.hashtags)) {
+            hashtags = responseData.hashtags
+          }
+
+          // Extract research summary
+          if (responseData.research_summary) {
+            const summary = responseData.research_summary
+            setResearchSummary(
+              `Topic: ${summary.topic || 'N/A'}\n\n` +
+              `Key Findings:\n${(summary.key_findings || []).map((f: string) => `• ${f}`).join('\n')}`
+            )
+          }
+
+          setGeneratedContent(content)
+          setEditedContent(content)
+          setCitations(extractedCitations)
+          setCurrentWordCount(wordCount)
+          setCurrentHashtags(hashtags)
+
+          // Save as draft to history
+          const newPost: GeneratedPost = {
+            id: Date.now().toString(),
+            content,
+            citations: extractedCitations,
+            style: selectedStyle,
+            date: new Date().toISOString(),
+            status: 'draft',
+            wordCount,
+            hashtags,
+            topic: topic || `${industry} trends`
+          }
+          saveToHistory(newPost)
         }
-
-        // Extract citations
-        if (responseData.citations) {
-          extractedCitations = responseData.citations
-        }
-
-        // Extract hashtags
-        if (responseData.hashtags) {
-          hashtags = responseData.hashtags
-        }
-
-        // Extract research summary
-        if (responseData.research_summary) {
-          const summary = responseData.research_summary
-          setResearchSummary(
-            `Topic: ${summary.topic || 'N/A'}\n\n` +
-            `Key Findings:\n${(summary.key_findings || []).map((f: string) => `• ${f}`).join('\n')}`
-          )
-        }
-
-        setGeneratedContent(content)
-        setEditedContent(content)
-        setCitations(extractedCitations)
-        setCurrentWordCount(wordCount)
-        setCurrentHashtags(hashtags)
-
-        // Save as draft to history
-        const newPost: GeneratedPost = {
-          id: Date.now().toString(),
-          content,
-          citations: extractedCitations,
-          style: selectedStyle,
-          date: new Date().toISOString(),
-          status: 'draft',
-          wordCount,
-          hashtags,
-          topic: topic || `${industry} trends`
-        }
-        saveToHistory(newPost)
       } else {
         setError(result.response?.result?.message || 'Failed to generate content')
       }
@@ -397,17 +407,19 @@ export default function Home() {
         AGENT_IDS.linkedInPublisher
       )
 
-      if (result.success && result.response.status === 'success') {
+      if (result.success && result.response?.status === 'success') {
         const publishData = result.response.result
 
-        // Find the draft post and update it
-        const draftPost = postHistory.find(p => p.content === generatedContent && p.status === 'draft')
-        if (draftPost) {
-          updatePostInHistory(draftPost.id, {
-            status: 'posted',
-            postUrl: publishData.post_url,
-            content: editedContent
-          })
+        if (publishData) {
+          // Find the draft post and update it
+          const draftPost = postHistory.find(p => p.content === generatedContent && p.status === 'draft')
+          if (draftPost) {
+            updatePostInHistory(draftPost.id, {
+              status: 'posted',
+              postUrl: publishData.post_url,
+              content: editedContent
+            })
+          }
         }
 
         // Reset form
