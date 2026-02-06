@@ -107,13 +107,11 @@ export default function Home() {
         }
       }
 
-      // If no questions found, create intelligent default questions
+      // If no questions found, create standardized button-based questions
       if (extractedQuestions.length === 0) {
         extractedQuestions = [
-          { question: 'What matters most to you in making this decision?', answer: '' },
-          { question: 'What specific concerns or worries do you have about each option?', answer: '' },
-          { question: 'What would success look like 6-12 months from now?', answer: '' },
-          { question: 'What are the potential risks or downsides you foresee?', answer: '' }
+          { question: 'What matters most to you here?', answer: '' },
+          { question: 'What worries you most about the other option?', answer: '' }
         ]
       }
 
@@ -127,11 +125,22 @@ export default function Home() {
     }
   }
 
-  // Step 2: Handle question answers
+  // Step 2: Handle question answers (button-based)
   const handleAnswerChange = (index: number, answer: string) => {
     setQuestions(prev => prev.map((q, i) =>
       i === index ? { ...q, answer } : q
     ))
+  }
+
+  const handleButtonAnswer = (answer: string) => {
+    handleAnswerChange(currentQuestionIndex, answer)
+
+    // Auto-advance to next question after selection
+    if (currentQuestionIndex < questions.length - 1) {
+      setTimeout(() => {
+        setCurrentQuestionIndex(prev => prev + 1)
+      }, 300)
+    }
   }
 
   const handleNextQuestion = () => {
@@ -194,14 +203,14 @@ export default function Home() {
       if (extractedOptions.length === 0) {
         extractedOptions = [
           {
-            name: 'Option A',
-            pros: ['Potential for growth', 'New opportunities', 'Fresh perspective'],
-            cons: ['Uncertainty', 'Risk of change', 'Learning curve']
+            name: 'Forward Move',
+            pros: ['Aligns with long-term goals', 'Potential for significant growth', 'New opportunities'],
+            cons: ['Requires effort and adjustment', 'Some uncertainty', 'May feel uncomfortable at first']
           },
           {
-            name: 'Option B',
-            pros: ['Familiarity', 'Stability', 'Proven track record'],
-            cons: ['Limited growth', 'Potential stagnation', 'Comfort zone']
+            name: 'Safe Move',
+            pros: ['Familiar and comfortable', 'Low immediate risk', 'Requires less change'],
+            cons: ['May limit future opportunities', 'Could lead to regret later', 'Keeps you in comfort zone']
           }
         ]
       }
@@ -267,10 +276,6 @@ export default function Home() {
           {
             name: 'Loss Aversion',
             explanation: 'You may be overweighting potential losses compared to equivalent gains, making risky options seem worse than they are.'
-          },
-          {
-            name: 'Confirmation Bias',
-            explanation: 'You might be giving more weight to information that supports your initial preference while dismissing contradictory evidence.'
           }
         ]
       }
@@ -328,15 +333,8 @@ export default function Home() {
         const topPriority = priorities[0]
         const optionNames = options.map(o => o.name)
 
-        // Analyze which option is better based on priorities
-        let recommendation = ''
-        if (topPriority && topPriority.importance >= 3) {
-          recommendation = `**RECOMMENDATION: ${optionNames[0]}**\n\nBased on your highest priority - ${topPriority.priority} - this appears to be the most strategic choice. `
-        } else {
-          recommendation = `**RECOMMENDED APPROACH:**\n\nGiven your priorities, here's what you should do: `
-        }
-
-        framing = `${recommendation}\n\n**What to do next:**\n\n1. Focus on ${topPriority?.priority || 'your main goal'} as your primary decision criterion\n2. Accept that ${optionNames[0]} may have short-term challenges but offers better long-term alignment with what matters most to you\n3. Start by taking one concrete action toward this choice within the next 48 hours\n\n**Why this is the most lucrative decision:**\n\nThis option best serves your stated priorities while managing the inherent risks. The trade-offs are acceptable given where you want to be in 6-12 months. Move forward with confidence - you've done the analysis.`
+        // Simple recommendation format
+        framing = `RECOMMENDATION: ${optionNames[0]}\n\nBased on your stated priorities - particularly ${topPriority?.priority || 'your main goals'} - the ${optionNames[0]} aligns better with what matters most to you. While it may involve some uncertainty, it offers stronger potential for long-term satisfaction and growth.\n\nNext step: Take one small action toward ${optionNames[0]} in the next 48 hours.`
       }
 
       // Always proceed to Step 5
@@ -592,13 +590,43 @@ export default function Home() {
                       <label className="text-base font-semibold text-slate-800 mb-4 block">
                         {questions[currentQuestionIndex].question}
                       </label>
-                      <textarea
-                        value={questions[currentQuestionIndex].answer || ''}
-                        onChange={(e) => handleAnswerChange(currentQuestionIndex, e.target.value)}
-                        rows={5}
-                        placeholder="Take your time to reflect and share your thoughts..."
-                        className="w-full px-5 py-4 border-2 border-purple-100 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-purple-200 focus:border-purple-400 resize-none text-slate-900 bg-white/80 backdrop-blur-sm transition-all placeholder:text-slate-400"
-                      />
+
+                      {/* Button-based selections */}
+                      {currentQuestionIndex === 0 ? (
+                        // Question 1: What matters most to you here?
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {['Rest', 'Money', 'Growth', 'Stability', 'Peace of mind'].map((option) => (
+                            <button
+                              key={option}
+                              onClick={() => handleButtonAnswer(option)}
+                              className={`px-6 py-4 rounded-xl text-left font-medium transition-all duration-300 ${
+                                questions[currentQuestionIndex].answer === option
+                                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg scale-[1.02]'
+                                  : 'bg-white/80 border-2 border-purple-100 text-slate-800 hover:border-purple-300 hover:shadow-md hover:bg-purple-50/50'
+                              }`}
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        // Question 2: What worries you most about the other option?
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {['I might fail', 'I might miss out', 'I might regret it', 'I might lose time', 'I might lose money'].map((option) => (
+                            <button
+                              key={option}
+                              onClick={() => handleButtonAnswer(option)}
+                              className={`px-6 py-4 rounded-xl text-left font-medium transition-all duration-300 ${
+                                questions[currentQuestionIndex].answer === option
+                                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg scale-[1.02]'
+                                  : 'bg-white/80 border-2 border-purple-100 text-slate-800 hover:border-purple-300 hover:shadow-md hover:bg-purple-50/50'
+                              }`}
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
                     {/* Navigation Buttons */}
