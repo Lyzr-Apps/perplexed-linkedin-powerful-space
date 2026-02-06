@@ -1,0 +1,41 @@
+{
+  "status": "success",
+  "intelligence": {
+    "user_profile_summary": "Senior Software Engineer with expertise in AI, Machine Learning, and Cloud Architecture. Active in Technology industry with focus on innovative solutions.",
+    "network_trends": [
+      "Generative AI in Enterprise",
+      "AI Agent Frameworks",
+      "LLM Fine-tuning Techniques",
+      "Cloud-native AI Development"
+    ],
+    "recommended_topics": [
+      {
+        "topic": "Building Production-Ready AI Agents",
+        "relevance_score": 0.95,
+        "reason": "Combines your ML expertise with trending agent frameworks discussion in your network",
+        "suggested_angle": "Share lessons learned from deploying AI agents at scale",
+        "trending_level": "high"
+      },
+      {
+        "topic": "The Future of LLM Integration in SaaS",
+        "relevance_score": 0.91,
+        "reason": "Aligns with your cloud architecture background and hot topic in your connections' posts",
+        "suggested_angle": "Technical deep-dive on integration patterns and challenges",
+        "trending_level": "high"
+      },
+      {
+        "topic": "AI Engineering Best Practices",
+        "relevance_score": 0.87,
+        "reason": "Your senior role gives authority; network actively discussing ML engineering",
+        "suggested_angle": "Share practical tips from years of experience",
+        "trending_level": "medium"
+      }
+    ],
+    "content_gaps": [
+      "Leadership in AI teams",
+      "Career growth in ML/AI",
+      "Tools and frameworks comparison"
+    ],
+    "optimal_posting_time": "Tuesday-Thursday 9-11 AM PST"
+  }
+}

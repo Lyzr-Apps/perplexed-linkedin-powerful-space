@@ -1,0 +1,89 @@
+{
+  "agent_name": "LinkedIn Profile Analyzer",
+  "agent_id": "69858901094c8b2d4207dcec",
+  "agent_purpose": "profile_analysis",
+  "description": "Analyzes LinkedIn profile to extract user's professional information, skills, and interests",
+  "response_schema": {
+    "status": "string",
+    "profile": {
+      "name": "string",
+      "headline": "string",
+      "industry": "string",
+      "location": "string",
+      "experience_level": "string",
+      "top_skills": [
+        "string"
+      ],
+      "expertise_areas": [
+        "string"
+      ],
+      "interests": [
+        "string"
+      ],
+      "current_role": "string",
+      "company": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "profile": {
+      "name": "Jane Doe",
+      "headline": "Product Manager | Digital Transformation Leader",
+      "industry": "Information Technology and Services",
+      "location": "New York, NY",
+      "experience_level": "mid-senior",
+      "top_skills": [
+        "Product Management",
+        "Agile Methodologies",
+        "Stakeholder Engagement",
+        "Data Analysis",
+        "UX/UI Design"
+      ],
+      "expertise_areas": [
+        "Digital Transformation",
+        "Product Strategy",
+        "Cross-functional Team Leadership"
+      ],
+      "interests": [
+        "Emerging Technologies",
+        "Digital Product Innovation",
+        "Design Thinking"
+      ],
+      "current_role": "Product Manager",
+      "company": "Innovate Tech Solutions"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:28:27.092546",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "profile": {
+      "name": "Jane Doe",
+      "headline": "Product Manager | Digital Transformation Leader",
+      "industry": "Information Technology and Services",
+      "location": "New York, NY",
+      "experience_level": "mid-senior",
+      "top_skills": [
+        "Product Management",
+        "Agile Methodologies",
+        "Stakeholder Engagement",
+        "Data Analysis",
+        "UX/UI Design"
+      ],
+      "expertise_areas": [
+        "Digital Transformation",
+        "Product Strategy",
+        "Cross-functional Team Leadership"
+      ],
+      "interests": [
+        "Emerging Technologies",
+        "Digital Product Innovation",
+        "Design Thinking"
+      ],
+      "current_role": "Product Manager",
+      "company": "Innovate Tech Solutions"
+    }
+  },
+  "test_passed": false
+}

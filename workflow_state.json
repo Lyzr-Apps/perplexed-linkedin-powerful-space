@@ -37,12 +37,42 @@
       }
     ]
   },
+  "content_intelligence": {
+    "manager": {
+      "agent_id": "69858930094c8b2d4207dcee",
+      "name": "Content Intelligence Manager",
+      "type": "Manager",
+      "provider": "OpenAI",
+      "model": "gpt-4.1"
+    },
+    "sub_agents": [
+      {
+        "agent_id": "69858901094c8b2d4207dcec",
+        "name": "LinkedIn Profile Analyzer",
+        "type": "Sub-Agent",
+        "provider": "OpenAI",
+        "model": "gpt-4.1",
+        "integrations": ["LinkedIn (Composio)"]
+      },
+      {
+        "agent_id": "698589171caa4e686dd66e40",
+        "name": "Network Discovery Agent",
+        "type": "Sub-Agent",
+        "provider": "OpenAI",
+        "model": "gpt-4.1",
+        "integrations": ["LinkedIn (Composio)"]
+      }
+    ]
+  },
   "workflow_state": "complete",
-  "total_agents": 4,
+  "total_agents": 7,
   "agent_ids": [
     "69858425b90162af337b1e15",
     "698583f19ccc65e46e9a5ecd",
     "6985840b2237a2c55706afcf",
-    "6985843c1caa4e686dd66d65"
+    "6985843c1caa4e686dd66d65",
+    "69858930094c8b2d4207dcee",
+    "69858901094c8b2d4207dcec",
+    "698589171caa4e686dd66e40"
   ]
 }

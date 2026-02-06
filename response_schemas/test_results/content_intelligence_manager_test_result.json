@@ -1,0 +1,54 @@
+{
+  "agent_name": "Content Intelligence Manager",
+  "agent_id": "69858930094c8b2d4207dcee",
+  "test_message": "Analyze my profile and network to recommend personalized content topics I should write about on LinkedIn",
+  "expected_purpose": "intelligence_orchestration",
+  "timestamp": "2026-02-06T06:28:45.913950",
+  "is_valid_json": true,
+  "validation_errors": [
+    "Missing 'result' field",
+    "Missing 'metadata' field (optional but recommended)"
+  ],
+  "actual_response": {
+    "status": "success",
+    "intelligence": {
+      "user_profile_summary": "Senior Software Engineer with expertise in AI, Machine Learning, and Cloud Architecture. Active in Technology industry with focus on innovative solutions.",
+      "network_trends": [
+        "Generative AI in Enterprise",
+        "AI Agent Frameworks",
+        "LLM Fine-tuning Techniques",
+        "Cloud-native AI Development"
+      ],
+      "recommended_topics": [
+        {
+          "topic": "Building Production-Ready AI Agents",
+          "relevance_score": 0.95,
+          "reason": "Combines your ML expertise with trending agent frameworks discussion in your network",
+          "suggested_angle": "Share lessons learned from deploying AI agents at scale",
+          "trending_level": "high"
+        },
+        {
+          "topic": "The Future of LLM Integration in SaaS",
+          "relevance_score": 0.91,
+          "reason": "Aligns with your cloud architecture background and hot topic in your connections' posts",
+          "suggested_angle": "Technical deep-dive on integration patterns and challenges",
+          "trending_level": "high"
+        },
+        {
+          "topic": "AI Engineering Best Practices",
+          "relevance_score": 0.87,
+          "reason": "Your senior role gives authority; network actively discussing ML engineering",
+          "suggested_angle": "Share practical tips from years of experience",
+          "trending_level": "medium"
+        }
+      ],
+      "content_gaps": [
+        "Leadership in AI teams",
+        "Career growth in ML/AI",
+        "Tools and frameworks comparison"
+      ],
+      "optimal_posting_time": "Tuesday-Thursday 9-11 AM PST"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"intelligence\": {\n    \"user_profile_summary\": \"Senior Software Engineer with expertise in AI, Machine Learning, and Cloud Architecture. Active in Technology industry with focus on innovative solutions.\",\n    \"network_trends\": [\n      \"Generative AI in Enterprise\",\n      \"AI Agent Frameworks\",\n      \"LLM Fine-tuning Techniques\",\n      \"Cloud-native AI Development\"\n    ],\n    \"recommended_topics\": [\n      {\n        \"topic\": \"Building Production-Ready AI Agents\",\n        \"relevance_score\": 0.95,\n        \"reason\": \"Combines your ML expertise with trending agent frameworks discussion in your network\",\n        \"suggested_angle\": \"Share lessons learned from deploying AI agents at scale\",\n        \"trending_level\": \"high\"\n      },\n      {\n        \"topic\": \"The Future of LLM Integration in SaaS\",\n        \"relevance_score\": 0.91,\n        \"reason\": \"Aligns with your cloud architecture background and hot topic in your connections' posts\",\n        \"suggested_angle\": \"Technical deep-dive on integration patterns and challenges\",\n        \"trending_level\": \"high\"\n      },\n      {\n        \"topic\": \"AI Engineering Best Practices\",\n        \"relevance_score\": 0.87,\n        \"reason\": \"Your senior role gives authority; network actively discussing ML engineering\",\n        \"suggested_angle\": \"Share practical tips from years of experience\",\n        \"trending_level\": \"medium\"\n      }\n    ],\n    \"content_gaps\": [\n      \"Leadership in AI teams\",\n      \"Career growth in ML/AI\",\n      \"Tools and frameworks comparison\"\n    ],\n    \"optimal_posting_time\": \"Tuesday-Thursday 9-11 AM PST\"\n  }\n}"
+}

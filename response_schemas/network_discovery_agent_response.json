@@ -1,0 +1,216 @@
+{
+  "agent_name": "Network Discovery Agent",
+  "agent_id": "698589171caa4e686dd66e40",
+  "agent_purpose": "network_analysis",
+  "description": "Discovers and analyzes relevant connections, identifies influential profiles, and extracts trending topics from the user's network",
+  "response_schema": {
+    "status": "string",
+    "network_insights": {
+      "total_connections_analyzed": "number",
+      "relevant_profiles": [
+        {
+          "name": "string",
+          "headline": "string",
+          "relevance_score": "number",
+          "common_interests": [
+            "string"
+          ],
+          "influence_level": "string"
+        }
+      ],
+      "trending_topics": [
+        {
+          "topic": "string",
+          "frequency": "number",
+          "relevance_score": "number",
+          "mentioned_by": [
+            "string"
+          ]
+        }
+      ],
+      "content_themes": [
+        "string"
+      ]
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "network_insights": {
+      "total_connections_analyzed": 150,
+      "relevant_profiles": [
+        {
+          "name": "Sarah Chen",
+          "headline": "AI Research Lead at OpenAI",
+          "relevance_score": 0.96,
+          "common_interests": [
+            "Artificial Intelligence",
+            "Machine Learning",
+            "NLP"
+          ],
+          "influence_level": "high"
+        },
+        {
+          "name": "David Park",
+          "headline": "Software Engineering Manager | ML Systems",
+          "relevance_score": 0.9,
+          "common_interests": [
+            "Software Development",
+            "Machine Learning",
+            "Distributed Systems"
+          ],
+          "influence_level": "medium"
+        },
+        {
+          "name": "Emily Rodriguez",
+          "headline": "Senior Data Scientist | ML Engineer",
+          "relevance_score": 0.87,
+          "common_interests": [
+            "Deep Learning",
+            "Data Science",
+            "Python"
+          ],
+          "influence_level": "medium"
+        },
+        {
+          "name": "Michael Torres",
+          "headline": "CTO | Building AI-powered SaaS",
+          "relevance_score": 0.85,
+          "common_interests": [
+            "Startups",
+            "AI",
+            "Software Architecture"
+          ],
+          "influence_level": "medium"
+        }
+      ],
+      "trending_topics": [
+        {
+          "topic": "Generative AI in Production",
+          "frequency": 52,
+          "relevance_score": 0.93,
+          "mentioned_by": [
+            "Sarah Chen",
+            "Emily Rodriguez",
+            "Michael Torres"
+          ]
+        },
+        {
+          "topic": "LLM Fine-tuning and Deployment",
+          "frequency": 41,
+          "relevance_score": 0.9,
+          "mentioned_by": [
+            "David Park",
+            "Sarah Chen"
+          ]
+        },
+        {
+          "topic": "AI Ethics and Responsible AI",
+          "frequency": 33,
+          "relevance_score": 0.88,
+          "mentioned_by": [
+            "Emily Rodriguez",
+            "Michael Torres"
+          ]
+        }
+      ],
+      "content_themes": [
+        "AI System Scalability",
+        "Foundation Models",
+        "Ethical Machine Learning",
+        "MLOps and Deployment Strategies"
+      ]
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:28:39.180164",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "network_insights": {
+      "total_connections_analyzed": 150,
+      "relevant_profiles": [
+        {
+          "name": "Sarah Chen",
+          "headline": "AI Research Lead at OpenAI",
+          "relevance_score": 0.96,
+          "common_interests": [
+            "Artificial Intelligence",
+            "Machine Learning",
+            "NLP"
+          ],
+          "influence_level": "high"
+        },
+        {
+          "name": "David Park",
+          "headline": "Software Engineering Manager | ML Systems",
+          "relevance_score": 0.9,
+          "common_interests": [
+            "Software Development",
+            "Machine Learning",
+            "Distributed Systems"
+          ],
+          "influence_level": "medium"
+        },
+        {
+          "name": "Emily Rodriguez",
+          "headline": "Senior Data Scientist | ML Engineer",
+          "relevance_score": 0.87,
+          "common_interests": [
+            "Deep Learning",
+            "Data Science",
+            "Python"
+          ],
+          "influence_level": "medium"
+        },
+        {
+          "name": "Michael Torres",
+          "headline": "CTO | Building AI-powered SaaS",
+          "relevance_score": 0.85,
+          "common_interests": [
+            "Startups",
+            "AI",
+            "Software Architecture"
+          ],
+          "influence_level": "medium"
+        }
+      ],
+      "trending_topics": [
+        {
+          "topic": "Generative AI in Production",
+          "frequency": 52,
+          "relevance_score": 0.93,
+          "mentioned_by": [
+            "Sarah Chen",
+            "Emily Rodriguez",
+            "Michael Torres"
+          ]
+        },
+        {
+          "topic": "LLM Fine-tuning and Deployment",
+          "frequency": 41,
+          "relevance_score": 0.9,
+          "mentioned_by": [
+            "David Park",
+            "Sarah Chen"
+          ]
+        },
+        {
+          "topic": "AI Ethics and Responsible AI",
+          "frequency": 33,
+          "relevance_score": 0.88,
+          "mentioned_by": [
+            "Emily Rodriguez",
+            "Michael Torres"
+          ]
+        }
+      ],
+      "content_themes": [
+        "AI System Scalability",
+        "Foundation Models",
+        "Ethical Machine Learning",
+        "MLOps and Deployment Strategies"
+      ]
+    }
+  },
+  "test_passed": false
+}

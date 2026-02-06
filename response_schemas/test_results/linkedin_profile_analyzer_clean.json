@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "profile": {
+    "name": "Jane Doe",
+    "headline": "Product Manager | Digital Transformation Leader",
+    "industry": "Information Technology and Services",
+    "location": "New York, NY",
+    "experience_level": "mid-senior",
+    "top_skills": ["Product Management", "Agile Methodologies", "Stakeholder Engagement", "Data Analysis", "UX/UI Design"],
+    "expertise_areas": ["Digital Transformation", "Product Strategy", "Cross-functional Team Leadership"],
+    "interests": ["Emerging Technologies", "Digital Product Innovation", "Design Thinking"],
+    "current_role": "Product Manager",
+    "company": "Innovate Tech Solutions"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "agent_name": "LinkedIn Profile Analyzer",
+  "agent_id": "69858901094c8b2d4207dcec",
+  "test_message": "Analyze my LinkedIn profile and extract my industry, skills, expertise areas, and professional interests",
+  "expected_purpose": "profile_analysis",
+  "timestamp": "2026-02-06T06:28:27.091897",
+  "is_valid_json": true,
+  "validation_errors": [
+    "Missing 'result' field",
+    "Missing 'metadata' field (optional but recommended)"
+  ],
+  "actual_response": {
+    "status": "success",
+    "profile": {
+      "name": "Jane Doe",
+      "headline": "Product Manager | Digital Transformation Leader",
+      "industry": "Information Technology and Services",
+      "location": "New York, NY",
+      "experience_level": "mid-senior",
+      "top_skills": [
+        "Product Management",
+        "Agile Methodologies",
+        "Stakeholder Engagement",
+        "Data Analysis",
+        "UX/UI Design"
+      ],
+      "expertise_areas": [
+        "Digital Transformation",
+        "Product Strategy",
+        "Cross-functional Team Leadership"
+      ],
+      "interests": [
+        "Emerging Technologies",
+        "Digital Product Innovation",
+        "Design Thinking"
+      ],
+      "current_role": "Product Manager",
+      "company": "Innovate Tech Solutions"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"profile\": {\n    \"name\": \"Jane Doe\",\n    \"headline\": \"Product Manager | Digital Transformation Leader\",\n    \"industry\": \"Information Technology and Services\",\n    \"location\": \"New York, NY\",\n    \"experience_level\": \"mid-senior\",\n    \"top_skills\": [\n      \"Product Management\",\n      \"Agile Methodologies\",\n      \"Stakeholder Engagement\",\n      \"Data Analysis\",\n      \"UX/UI Design\"\n    ],\n    \"expertise_areas\": [\n      \"Digital Transformation\",\n      \"Product Strategy\",\n      \"Cross-functional Team Leadership\"\n    ],\n    \"interests\": [\n      \"Emerging Technologies\",\n      \"Digital Product Innovation\",\n      \"Design Thinking\"\n    ],\n    \"current_role\": \"Product Manager\",\n    \"company\": \"Innovate Tech Solutions\"\n  }\n}"
+}
