@@ -88,45 +88,40 @@ export default function Home() {
         AGENT_IDS.decisionClarifier
       )
 
+      console.log('Agent Response:', result)
+
+      // Always proceed - set decision statement
+      setDecisionStatement(initialDecision)
+
+      // Extract questions if agent provided them
+      let extractedQuestions: Question[] = []
+
       if (result.success && result.response?.status === 'success') {
         const resultData = result.response.result
 
-        if (resultData) {
-          // Extract decision statement - use original input as statement
-          setDecisionStatement(initialDecision)
-
-          // Extract questions - handle different possible structures
-          // The API normalizes responses so custom fields are directly on resultData
-          let extractedQuestions: Question[] = []
-
-          if (resultData.questions && Array.isArray(resultData.questions)) {
-            extractedQuestions = resultData.questions.map((q: any) => ({
-              question: typeof q === 'string' ? q : q.question || q.text || '',
-              answer: ''
-            }))
-          }
-
-          // If no questions found, create intelligent default questions
-          if (extractedQuestions.length === 0) {
-            extractedQuestions = [
-              { question: 'What matters most to you in making this decision?', answer: '' },
-              { question: 'What specific concerns or worries do you have about each option?', answer: '' },
-              { question: 'What would success look like 6-12 months from now?', answer: '' },
-              { question: 'What are the potential risks or downsides you foresee?', answer: '' }
-            ]
-          }
-
-          setQuestions(extractedQuestions)
-          setCurrentStep(2)
-        } else {
-          setError('Failed to clarify decision. Please try again.')
+        if (resultData && resultData.questions && Array.isArray(resultData.questions)) {
+          extractedQuestions = resultData.questions.map((q: any) => ({
+            question: typeof q === 'string' ? q : q.question || q.text || '',
+            answer: ''
+          }))
         }
-      } else {
-        setError('Failed to clarify decision. Please try again.')
       }
+
+      // If no questions found, create intelligent default questions
+      if (extractedQuestions.length === 0) {
+        extractedQuestions = [
+          { question: 'What matters most to you in making this decision?', answer: '' },
+          { question: 'What specific concerns or worries do you have about each option?', answer: '' },
+          { question: 'What would success look like 6-12 months from now?', answer: '' },
+          { question: 'What are the potential risks or downsides you foresee?', answer: '' }
+        ]
+      }
+
+      setQuestions(extractedQuestions)
+      setCurrentStep(2)
     } catch (err) {
       setError('An error occurred. Please try again.')
-      console.error(err)
+      console.error('Exception:', err)
     } finally {
       setLoadingStep1(false)
     }
