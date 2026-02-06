@@ -88,6 +88,9 @@ export default function Home() {
         AGENT_IDS.decisionClarifier
       )
 
+      // Debug: log the full response to console
+      console.log('Decision Clarifier Response:', JSON.stringify(result, null, 2))
+
       if (result.success && result.response?.status === 'success') {
         const resultData = result.response.result
 
