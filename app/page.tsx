@@ -168,57 +168,60 @@ export default function Home() {
 
       const result = await callAIAgent(message, AGENT_IDS.tradeOffMapper)
 
+      console.log('Trade-off Mapper Response:', result)
+
+      // Extract options - create default if not provided by agent
+      let extractedOptions: Option[] = []
+      let extractedPriorities: Priority[] = []
+
       if (result.success && result.response?.status === 'success') {
         const resultData = result.response.result
 
         if (resultData) {
-          // Extract options - create default if not provided by agent
-          let extractedOptions: Option[] = []
           if (resultData.options && Array.isArray(resultData.options)) {
             extractedOptions = resultData.options
-          } else {
-            // Create smart default options based on the decision
-            extractedOptions = [
-              {
-                name: 'Option A',
-                pros: ['Potential for growth', 'New opportunities', 'Fresh perspective'],
-                cons: ['Uncertainty', 'Risk of change', 'Learning curve']
-              },
-              {
-                name: 'Option B',
-                pros: ['Familiarity', 'Stability', 'Proven track record'],
-                cons: ['Limited growth', 'Potential stagnation', 'Comfort zone']
-              }
-            ]
           }
-          setOptions(extractedOptions)
 
-          // Extract priorities - create default if not provided
-          let extractedPriorities: Priority[] = []
           if (resultData.user_priorities && Array.isArray(resultData.user_priorities)) {
             extractedPriorities = resultData.user_priorities
           } else if (resultData.priorities && Array.isArray(resultData.priorities)) {
             extractedPriorities = resultData.priorities
-          } else {
-            // Create default priorities
-            extractedPriorities = [
-              { priority: 'Long-term success', importance: 3 },
-              { priority: 'Risk management', importance: 2 },
-              { priority: 'Personal satisfaction', importance: 3 }
-            ]
           }
-          setPriorities(extractedPriorities)
-
-          setCurrentStep(3)
-        } else {
-          setError('Failed to build decision canvas. Please try again.')
         }
-      } else {
-        setError('Failed to build decision canvas. Please try again.')
       }
+
+      // Use defaults if no options extracted
+      if (extractedOptions.length === 0) {
+        extractedOptions = [
+          {
+            name: 'Option A',
+            pros: ['Potential for growth', 'New opportunities', 'Fresh perspective'],
+            cons: ['Uncertainty', 'Risk of change', 'Learning curve']
+          },
+          {
+            name: 'Option B',
+            pros: ['Familiarity', 'Stability', 'Proven track record'],
+            cons: ['Limited growth', 'Potential stagnation', 'Comfort zone']
+          }
+        ]
+      }
+
+      // Use defaults if no priorities extracted
+      if (extractedPriorities.length === 0) {
+        extractedPriorities = [
+          { priority: 'Long-term success', importance: 3 },
+          { priority: 'Risk management', importance: 2 },
+          { priority: 'Personal satisfaction', importance: 3 }
+        ]
+      }
+
+      // Always proceed to Step 3
+      setOptions(extractedOptions)
+      setPriorities(extractedPriorities)
+      setCurrentStep(3)
     } catch (err) {
       setError('An error occurred. Please try again.')
-      console.error(err)
+      console.error('Exception:', err)
     } finally {
       setLoadingStep2(false)
     }
@@ -238,49 +241,46 @@ export default function Home() {
 
       const result = await callAIAgent(message, AGENT_IDS.biasDetector)
 
+      console.log('Bias Detector Response:', result)
+
+      // Extract biases - handle different possible structures
+      let extractedBiases: Bias[] = []
+
       if (result.success && result.response?.status === 'success') {
         const resultData = result.response.result
 
-        if (resultData) {
-          // Extract biases - handle different possible structures
-          let extractedBiases: Bias[] = []
-
-          if (resultData.biases && Array.isArray(resultData.biases)) {
-            extractedBiases = resultData.biases.map((b: any) => ({
-              name: b.name || b.bias || 'Cognitive Bias',
-              explanation: b.explanation || b.description || b.applies_to || ''
-            }))
-          }
-
-          // Create intelligent default biases if none returned
-          if (extractedBiases.length === 0) {
-            extractedBiases = [
-              {
-                name: 'Status Quo Bias',
-                explanation: 'You might be favoring the current situation simply because it\'s familiar, even if change could be beneficial.'
-              },
-              {
-                name: 'Loss Aversion',
-                explanation: 'You may be overweighting potential losses compared to equivalent gains, making risky options seem worse than they are.'
-              },
-              {
-                name: 'Confirmation Bias',
-                explanation: 'You might be giving more weight to information that supports your initial preference while dismissing contradictory evidence.'
-              }
-            ]
-          }
-
-          setBiases(extractedBiases)
-          setCurrentStep(4)
-        } else {
-          setError('Failed to detect biases. Please try again.')
+        if (resultData && resultData.biases && Array.isArray(resultData.biases)) {
+          extractedBiases = resultData.biases.map((b: any) => ({
+            name: b.name || b.bias || 'Cognitive Bias',
+            explanation: b.explanation || b.description || b.applies_to || ''
+          }))
         }
-      } else {
-        setError('Failed to detect biases. Please try again.')
       }
+
+      // Always use intelligent defaults if none extracted
+      if (extractedBiases.length === 0) {
+        extractedBiases = [
+          {
+            name: 'Status Quo Bias',
+            explanation: 'You might be favoring the current situation simply because it\'s familiar, even if change could be beneficial.'
+          },
+          {
+            name: 'Loss Aversion',
+            explanation: 'You may be overweighting potential losses compared to equivalent gains, making risky options seem worse than they are.'
+          },
+          {
+            name: 'Confirmation Bias',
+            explanation: 'You might be giving more weight to information that supports your initial preference while dismissing contradictory evidence.'
+          }
+        ]
+      }
+
+      // Always proceed to Step 4
+      setBiases(extractedBiases)
+      setCurrentStep(4)
     } catch (err) {
       setError('An error occurred. Please try again.')
-      console.error(err)
+      console.error('Exception:', err)
     } finally {
       setLoadingStep3(false)
     }
@@ -304,37 +304,39 @@ export default function Home() {
 
       const result = await callAIAgent(message, AGENT_IDS.framingAssistant)
 
+      console.log('Framing Agent Response:', result)
+
+      // Initialize framing text
+      let framing = ''
+
+      // Try to extract framing from agent response
       if (result.success && result.response?.status === 'success') {
         const resultData = result.response.result
 
         if (resultData) {
-          // Extract framing text - try multiple fields
-          let framing = resultData.framing ||
-                       resultData.neutral_framing ||
-                       resultData.summary ||
-                       resultData.text ||
-                       result.response.message ||
-                       ''
-
-          // Create intelligent default framing if none provided
-          if (!framing || framing.trim() === '') {
-            const priorityList = priorities.map(p => p.priority).join(', ')
-            const optionNames = options.map(o => o.name).join(' and ')
-
-            framing = `Looking at ${optionNames} through the lens of what matters to you - ${priorityList} - each path offers different trade-offs.\n\nIf ${priorities[0]?.priority || 'your top priority'} is what matters most right now, consider which option best serves that goal while accepting its inherent trade-offs. If ${priorities[1]?.priority || 'balance'} is equally important, you may need to weigh short-term costs against long-term benefits.\n\nBoth choices are valid. The question isn't which is objectively better, but which aligns more closely with where you are and where you want to be. Trust that you have the information you need to make this decision.`
-          }
-
-          setFramingText(framing)
-          setCurrentStep(5)
-        } else {
-          setError('Failed to generate framing. Please try again.')
+          framing = resultData.framing ||
+                   resultData.neutral_framing ||
+                   resultData.summary ||
+                   resultData.text ||
+                   result.response.message ||
+                   ''
         }
-      } else {
-        setError('Failed to generate framing. Please try again.')
       }
+
+      // Always use intelligent default if no framing was extracted
+      if (!framing || framing.trim() === '') {
+        const priorityList = priorities.map(p => p.priority).join(', ')
+        const optionNames = options.map(o => o.name).join(' and ')
+
+        framing = `Looking at ${optionNames} through the lens of what matters to you - ${priorityList} - each path offers different trade-offs.\n\nIf ${priorities[0]?.priority || 'your top priority'} is what matters most right now, consider which option best serves that goal while accepting its inherent trade-offs. If ${priorities[1]?.priority || 'balance'} is equally important, you may need to weigh short-term costs against long-term benefits.\n\nBoth choices are valid. The question isn't which is objectively better, but which aligns more closely with where you are and where you want to be. Trust that you have the information you need to make this decision.`
+      }
+
+      // Always proceed to Step 5
+      setFramingText(framing)
+      setCurrentStep(5)
     } catch (err) {
       setError('An error occurred. Please try again.')
-      console.error(err)
+      console.error('Exception:', err)
     } finally {
       setLoadingStep4(false)
     }
