@@ -1,166 +1,95 @@
 {
-  "workflow_name": "LinkedIn Content Studio",
-  "workflow_description": "Hybrid workflow for researching topics, generating LinkedIn content, and publishing to LinkedIn",
-  "workflow_type": "Hybrid (Manager-Subagent + Independent Agent)",
+  "workflow_name": "Decision Companion",
+  "workflow_description": "Decision-coaching tool that helps users think clearly about choices using structured analysis, bias detection, and neutral framing",
+  "workflow_type": "Manager-Subagent",
   "nodes": [
     {
       "id": "input_node",
       "type": "Input",
-      "label": "User Input",
+      "label": "User Decision Input",
       "nodeCategory": "input",
       "position": { "x": 100, "y": 200 }
     },
     {
-      "id": "manager_agent",
+      "id": "decision_clarifier",
       "type": "Agent",
-      "label": "Research & Content Manager",
+      "label": "Decision Clarifier",
       "nodeCategory": "agent",
-      "agent_id": "69858425b90162af337b1e15",
+      "agent_id": "698592c0ab4bf65a66ad0873",
       "position": { "x": 400, "y": 200 }
     },
     {
-      "id": "research_agent",
+      "id": "tradeoff_mapper",
       "type": "Agent",
-      "label": "Topic Research Agent",
+      "label": "Trade-off Mapper",
       "nodeCategory": "agent",
-      "agent_id": "698583f19ccc65e46e9a5ecd",
+      "agent_id": "6985928ae5d25ce3f598cb6a",
       "position": { "x": 400, "y": 350 }
     },
     {
-      "id": "script_agent",
+      "id": "bias_detector",
       "type": "Agent",
-      "label": "Script Generation Agent",
+      "label": "Bias Detector",
       "nodeCategory": "agent",
-      "agent_id": "6985840b2237a2c55706afcf",
+      "agent_id": "6985929df7f7d3ffa5d86533",
       "position": { "x": 550, "y": 350 }
     },
     {
-      "id": "publisher_agent",
+      "id": "framing_assistant",
       "type": "Agent",
-      "label": "LinkedIn Publisher Agent",
+      "label": "Framing Assistant",
       "nodeCategory": "agent",
-      "agent_id": "6985843c1caa4e686dd66d65",
-      "position": { "x": 700, "y": 200 }
+      "agent_id": "698592ae1caa4e686dd66f19",
+      "position": { "x": 700, "y": 350 }
     },
     {
       "id": "output_node",
       "type": "Output",
-      "label": "Final Output",
+      "label": "Decision Canvas Output",
       "nodeCategory": "end",
       "position": { "x": 1000, "y": 200 }
-    },
-    {
-      "id": "intelligence_input_node",
-      "type": "Input",
-      "label": "User Request for Content Intelligence",
-      "nodeCategory": "input",
-      "position": { "x": 100, "y": 500 }
-    },
-    {
-      "id": "content_intelligence_manager",
-      "type": "Agent",
-      "label": "Content Intelligence Manager",
-      "nodeCategory": "agent",
-      "agent_id": "69858930094c8b2d4207dcee",
-      "position": { "x": 400, "y": 500 }
-    },
-    {
-      "id": "profile_analyzer_agent",
-      "type": "Agent",
-      "label": "LinkedIn Profile Analyzer",
-      "nodeCategory": "agent",
-      "agent_id": "69858901094c8b2d4207dcec",
-      "position": { "x": 400, "y": 650 }
-    },
-    {
-      "id": "network_discovery_agent",
-      "type": "Agent",
-      "label": "Network Discovery Agent",
-      "nodeCategory": "agent",
-      "agent_id": "698589171caa4e686dd66e40",
-      "position": { "x": 550, "y": 650 }
-    },
-    {
-      "id": "intelligence_output_node",
-      "type": "Output",
-      "label": "Content Intelligence Output",
-      "nodeCategory": "end",
-      "position": { "x": 700, "y": 500 }
     }
   ],
   "edges": [
     {
       "id": "e1",
       "source": "input_node",
-      "target": "manager_agent",
-      "label": "Generate Content trigger"
+      "target": "decision_clarifier",
+      "label": "User describes decision"
     },
     {
       "id": "e2",
-      "source": "manager_agent",
-      "target": "research_agent",
-      "label": "Delegate research"
+      "source": "decision_clarifier",
+      "target": "tradeoff_mapper",
+      "label": "Delegate trade-off analysis"
     },
     {
       "id": "e3",
-      "source": "manager_agent",
-      "target": "script_agent",
-      "label": "Delegate content creation"
+      "source": "decision_clarifier",
+      "target": "bias_detector",
+      "label": "Delegate bias detection"
     },
     {
       "id": "e4",
-      "source": "manager_agent",
-      "target": "publisher_agent",
-      "label": "Send for publishing"
+      "source": "decision_clarifier",
+      "target": "framing_assistant",
+      "label": "Delegate framing"
     },
     {
       "id": "e5",
-      "source": "publisher_agent",
+      "source": "decision_clarifier",
       "target": "output_node",
-      "label": "Published confirmation"
-    },
-    {
-      "id": "ie1",
-      "source": "intelligence_input_node",
-      "target": "content_intelligence_manager",
-      "label": "Request content intelligence"
-    },
-    {
-      "id": "ie2",
-      "source": "content_intelligence_manager",
-      "target": "profile_analyzer_agent",
-      "label": "Analyze user profile"
-    },
-    {
-      "id": "ie3",
-      "source": "content_intelligence_manager",
-      "target": "network_discovery_agent",
-      "label": "Discover network trends"
-    },
-    {
-      "id": "ie4",
-      "source": "content_intelligence_manager",
-      "target": "intelligence_output_node",
-      "label": "Return personalized recommendations"
+      "label": "Return decision canvas"
     }
   ],
   "agent_relationships": {
-    "content_studio_manager": {
-      "agent_id": "69858425b90162af337b1e15",
+    "decision_clarifier": {
+      "agent_id": "698592c0ab4bf65a66ad0873",
       "manages": [
-        "698583f19ccc65e46e9a5ecd",
-        "6985840b2237a2c55706afcf"
+        "6985928ae5d25ce3f598cb6a",
+        "6985929df7f7d3ffa5d86533",
+        "698592ae1caa4e686dd66f19"
       ]
-    },
-    "content_intelligence_manager": {
-      "agent_id": "69858930094c8b2d4207dcee",
-      "manages": [
-        "69858901094c8b2d4207dcec",
-        "698589171caa4e686dd66e40"
-      ]
-    },
-    "independent": [
-      "6985843c1caa4e686dd66d65"
-    ]
+    }
   }
 }

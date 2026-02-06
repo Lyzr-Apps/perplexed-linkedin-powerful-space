@@ -1,78 +1,45 @@
 {
-  "workflow_name": "LinkedIn Content Studio",
-  "workflow_type": "Hybrid (Manager-Subagent + Independent Agent)",
+  "workflow_name": "Decision Companion",
+  "workflow_type": "Manager-Subagent",
   "created_at": "2026-02-06T00:00:00Z",
   "agents": {
     "manager": {
-      "agent_id": "69858425b90162af337b1e15",
-      "name": "Research & Content Manager",
+      "agent_id": "698592c0ab4bf65a66ad0873",
+      "name": "Decision Clarifier",
       "type": "Manager",
       "provider": "OpenAI",
-      "model": "gpt-4.1"
+      "model": "gpt-4o"
     },
     "sub_agents": [
       {
-        "agent_id": "698583f19ccc65e46e9a5ecd",
-        "name": "Topic Research Agent",
+        "agent_id": "6985928ae5d25ce3f598cb6a",
+        "name": "Trade-off Mapper",
         "type": "Sub-Agent",
-        "provider": "Perplexity",
-        "model": "sonar-pro"
+        "provider": "OpenAI",
+        "model": "gpt-4o"
       },
       {
-        "agent_id": "6985840b2237a2c55706afcf",
-        "name": "Script Generation Agent",
+        "agent_id": "6985929df7f7d3ffa5d86533",
+        "name": "Bias Detector",
         "type": "Sub-Agent",
         "provider": "OpenAI",
-        "model": "gpt-4.1"
-      }
-    ],
-    "independent": [
-      {
-        "agent_id": "6985843c1caa4e686dd66d65",
-        "name": "LinkedIn Publisher Agent",
-        "type": "Independent",
-        "provider": "OpenAI",
-        "model": "gpt-4.1",
-        "integrations": ["LinkedIn (Composio)"]
-      }
-    ]
-  },
-  "content_intelligence": {
-    "manager": {
-      "agent_id": "69858930094c8b2d4207dcee",
-      "name": "Content Intelligence Manager",
-      "type": "Manager",
-      "provider": "OpenAI",
-      "model": "gpt-4.1"
-    },
-    "sub_agents": [
-      {
-        "agent_id": "69858901094c8b2d4207dcec",
-        "name": "LinkedIn Profile Analyzer",
-        "type": "Sub-Agent",
-        "provider": "OpenAI",
-        "model": "gpt-4.1",
-        "integrations": ["LinkedIn (Composio)"]
+        "model": "gpt-4o"
       },
       {
-        "agent_id": "698589171caa4e686dd66e40",
-        "name": "Network Discovery Agent",
+        "agent_id": "698592ae1caa4e686dd66f19",
+        "name": "Framing Assistant",
         "type": "Sub-Agent",
         "provider": "OpenAI",
-        "model": "gpt-4.1",
-        "integrations": ["LinkedIn (Composio)"]
+        "model": "gpt-4o"
       }
     ]
   },
   "workflow_state": "complete",
-  "total_agents": 7,
+  "total_agents": 4,
   "agent_ids": [
-    "69858425b90162af337b1e15",
-    "698583f19ccc65e46e9a5ecd",
-    "6985840b2237a2c55706afcf",
-    "6985843c1caa4e686dd66d65",
-    "69858930094c8b2d4207dcee",
-    "69858901094c8b2d4207dcec",
-    "698589171caa4e686dd66e40"
+    "698592c0ab4bf65a66ad0873",
+    "6985928ae5d25ce3f598cb6a",
+    "6985929df7f7d3ffa5d86533",
+    "698592ae1caa4e686dd66f19"
   ]
 }

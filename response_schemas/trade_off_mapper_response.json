@@ -1,0 +1,119 @@
+{
+  "agent_name": "Trade-off Mapper",
+  "agent_id": "6985928ae5d25ce3f598cb6a",
+  "agent_purpose": "tradeoff_analysis",
+  "description": "Returns structured pros/cons analysis of decision options with user priorities ranked by importance",
+  "response_schema": {
+    "status": "string",
+    "options": [
+      {
+        "name": "string",
+        "pros": [
+          "string"
+        ],
+        "cons": [
+          "string"
+        ]
+      }
+    ],
+    "user_priorities": [
+      {
+        "priority": "string",
+        "importance": "number"
+      }
+    ]
+  },
+  "example_response": {
+    "status": "success",
+    "options": [
+      {
+        "name": "Graduate School",
+        "pros": [
+          "Advanced learning opportunities",
+          "Networking with professionals",
+          "Specialized skill development"
+        ],
+        "cons": [
+          "High tuition fees",
+          "Significant time commitment",
+          "Limited immediate income"
+        ]
+      },
+      {
+        "name": "Full-Time Job",
+        "pros": [
+          "Steady income",
+          "Professional experience",
+          "Work-life balance"
+        ],
+        "cons": [
+          "Limited learning growth",
+          "Less flexibility",
+          "Potential job market volatility"
+        ]
+      }
+    ],
+    "user_priorities": [
+      {
+        "priority": "learning opportunities",
+        "importance": 3
+      },
+      {
+        "priority": "financial stability",
+        "importance": 2
+      },
+      {
+        "priority": "work-life balance",
+        "importance": 1
+      }
+    ]
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T07:04:49.688878",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "options": [
+      {
+        "name": "Graduate School",
+        "pros": [
+          "Advanced learning opportunities",
+          "Networking with professionals",
+          "Specialized skill development"
+        ],
+        "cons": [
+          "High tuition fees",
+          "Significant time commitment",
+          "Limited immediate income"
+        ]
+      },
+      {
+        "name": "Full-Time Job",
+        "pros": [
+          "Steady income",
+          "Professional experience",
+          "Work-life balance"
+        ],
+        "cons": [
+          "Limited learning growth",
+          "Less flexibility",
+          "Potential job market volatility"
+        ]
+      }
+    ],
+    "user_priorities": [
+      {
+        "priority": "learning opportunities",
+        "importance": 3
+      },
+      {
+        "priority": "financial stability",
+        "importance": 2
+      },
+      {
+        "priority": "work-life balance",
+        "importance": 1
+      }
+    ]
+  }
+}
