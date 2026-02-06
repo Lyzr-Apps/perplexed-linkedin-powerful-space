@@ -373,8 +373,8 @@ export default function Home() {
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-400/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       {/* Header */}
@@ -509,7 +509,7 @@ export default function Home() {
                       rows={5}
                       className="w-full px-5 py-4 border-2 border-indigo-100 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:border-indigo-400 resize-none text-slate-900 bg-white/80 backdrop-blur-sm transition-all placeholder:text-slate-400"
                     />
-                    <div className="absolute bottom-3 right-3 text-xs text-slate-400 font-medium">
+                    <div className="absolute bottom-3 right-3 text-xs text-slate-400 font-medium" suppressHydrationWarning>
                       {initialDecision.length} characters
                     </div>
                   </div>
