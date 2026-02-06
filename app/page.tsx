@@ -5,9 +5,9 @@ import { callAIAgent } from '@/lib/aiAgent'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Loader2, Check, AlertCircle, ExternalLink, Clock, TrendingUp, FileText, Home, Users, RefreshCw, Target, Star, Zap, ChevronRight } from 'lucide-react'
-import { FiHome, FiPlus, FiUsers, FiClock, FiTrendingUp, FiStar, FiTarget, FiRefreshCw, FiExternalLink } from 'react-icons/fi'
+import { FiHome, FiPlus, FiUsers, FiClock, FiTrendingUp, FiStar, FiTarget, FiRefreshCw, FiExternalLink, FiAlertCircle, FiCheck, FiChevronRight, FiFileText } from 'react-icons/fi'
 import { FaLinkedin, FaLightbulb, FaChartLine, FaBook, FaBolt } from 'react-icons/fa'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 // Agent IDs from workflow_state.json
 const AGENT_IDS = {
@@ -530,7 +530,7 @@ export default function Home() {
                 <CardContent className="space-y-4">
                   {loadingProfile || loadingDashboard ? (
                     <div className="flex items-center justify-center py-8">
-                      <Loader2 className="h-6 w-6 animate-spin text-[#0A66C2]" />
+                      <AiOutlineLoading3Quarters className="h-6 w-6 animate-spin text-[#0A66C2]" />
                     </div>
                   ) : userProfile ? (
                     <>
@@ -576,7 +576,7 @@ export default function Home() {
                         <div className="space-y-1">
                           {userProfile.expertise_areas.map((area, idx) => (
                             <div key={idx} className="flex items-center gap-2">
-                              <Check className="h-3 w-3 text-[#057642]" />
+                              <FiCheck className="h-3 w-3 text-[#057642]" />
                               <span className="text-xs text-[#00000099]">{area}</span>
                             </div>
                           ))}
@@ -592,7 +592,7 @@ export default function Home() {
                       >
                         {loadingProfile ? (
                           <>
-                            <Loader2 className="mr-2 h-3 w-3 animate-spin" />
+                            <AiOutlineLoading3Quarters className="mr-2 h-3 w-3 animate-spin" />
                             Refreshing...
                           </>
                         ) : (
@@ -624,14 +624,14 @@ export default function Home() {
               <Card className="bg-white border border-[#00000014] rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.08)]">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-base font-semibold text-[#000000E6] flex items-center gap-2">
-                    <Zap className="h-5 w-5 text-[#FF6B00]" />
+                    <FaBolt className="h-5 w-5 text-[#FF6B00]" />
                     Recommended Topics
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {loadingDashboard ? (
                     <div className="flex items-center justify-center py-12">
-                      <Loader2 className="h-8 w-8 animate-spin text-[#0A66C2]" />
+                      <AiOutlineLoading3Quarters className="h-8 w-8 animate-spin text-[#0A66C2]" />
                     </div>
                   ) : contentIntelligence?.recommended_topics ? (
                     contentIntelligence.recommended_topics.map((topic, idx) => (
@@ -684,13 +684,13 @@ export default function Home() {
                           className="w-full bg-[#0A66C2] hover:bg-[#004182] text-xs"
                         >
                           Generate Content
-                          <ChevronRight className="ml-2 h-3 w-3" />
+                          <FiChevronRight className="ml-2 h-3 w-3" />
                         </Button>
                       </div>
                     ))
                   ) : (
                     <div className="text-center py-12">
-                      <TrendingUp className="h-12 w-12 text-[#00000014] mx-auto mb-3" />
+                      <FiTrendingUp className="h-12 w-12 text-[#00000014] mx-auto mb-3" />
                       <p className="text-sm text-[#00000099]">No recommendations available</p>
                       <Button
                         onClick={loadDashboardData}
@@ -760,7 +760,7 @@ export default function Home() {
                 <CardContent className="space-y-3">
                   {loadingDashboard ? (
                     <div className="flex items-center justify-center py-4">
-                      <Loader2 className="h-6 w-6 animate-spin text-[#0A66C2]" />
+                      <AiOutlineLoading3Quarters className="h-6 w-6 animate-spin text-[#0A66C2]" />
                     </div>
                   ) : networkInsights?.relevant_profiles ? (
                     networkInsights.relevant_profiles.slice(0, 4).map((profile, idx) => (
@@ -942,7 +942,7 @@ export default function Home() {
                   ) : (
                     <div className="p-4 bg-[#0A66C2]/5 border border-[#0A66C2]/20 rounded-lg">
                       <div className="flex items-start gap-3">
-                        <Zap className="h-5 w-5 text-[#0A66C2] flex-shrink-0 mt-0.5" />
+                        <FaBolt className="h-5 w-5 text-[#0A66C2] flex-shrink-0 mt-0.5" />
                         <div>
                           <p className="text-sm font-semibold text-[#000000E6] mb-1">
                             AI-Powered Discovery
@@ -1016,7 +1016,7 @@ export default function Home() {
                   >
                     {isGenerating ? (
                       <>
-                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        <AiOutlineLoading3Quarters className="mr-2 h-5 w-5 animate-spin" />
                         Generating Content...
                       </>
                     ) : (
@@ -1027,7 +1027,7 @@ export default function Home() {
                   {/* Error Message */}
                   {error && (
                     <div className="flex items-start gap-2 p-4 bg-red-50 border border-red-200 rounded-lg">
-                      <AlertCircle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
+                      <FiAlertCircle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
                       <p className="text-sm text-red-800">{error}</p>
                     </div>
                   )}
@@ -1097,7 +1097,7 @@ export default function Home() {
                       >
                         <CardTitle className="text-base font-semibold text-[#000000E6] flex items-center justify-between">
                           <span>Sources & Citations ({citations.length})</span>
-                          <Check className="h-5 w-5 text-[#057642]" />
+                          <FiCheck className="h-5 w-5 text-[#057642]" />
                         </CardTitle>
                       </CardHeader>
                       {showSourcesPanel && (
@@ -1161,12 +1161,12 @@ export default function Home() {
                   >
                     {isPosting ? (
                       <>
-                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        <AiOutlineLoading3Quarters className="mr-2 h-5 w-5 animate-spin" />
                         Posting to LinkedIn...
                       </>
                     ) : (
                       <>
-                        <Check className="mr-2 h-5 w-5" />
+                        <FiCheck className="mr-2 h-5 w-5" />
                         Approve & Post to LinkedIn
                       </>
                     )}
@@ -1175,7 +1175,7 @@ export default function Home() {
               ) : (
                 <Card className="bg-white border border-[#00000014] rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.08)]">
                   <CardContent className="py-16 text-center">
-                    <FileText className="h-16 w-16 text-[#00000014] mx-auto mb-4" />
+                    <FiFileText className="h-16 w-16 text-[#00000014] mx-auto mb-4" />
                     <h3 className="text-base font-semibold text-[#000000E6] mb-2">
                       No Content Yet
                     </h3>
@@ -1274,7 +1274,7 @@ export default function Home() {
                       size="sm"
                       className="w-full text-[#0A66C2] border-[#0A66C2] hover:bg-[#0A66C2]/5"
                     >
-                      <Zap className="mr-2 h-4 w-4" />
+                      <FaBolt className="mr-2 h-4 w-4" />
                       Generate Similar Content
                     </Button>
                   </CardContent>
@@ -1283,7 +1283,7 @@ export default function Home() {
             ) : (
               <Card className="bg-white border border-[#00000014] rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.08)]">
                 <CardContent className="py-16 text-center">
-                  <Users className="h-16 w-16 text-[#00000014] mx-auto mb-4" />
+                  <FiUsers className="h-16 w-16 text-[#00000014] mx-auto mb-4" />
                   <h3 className="text-base font-semibold text-[#000000E6] mb-2">
                     No Network Activity
                   </h3>
@@ -1314,7 +1314,7 @@ export default function Home() {
                       <p className="text-xs text-[#00000099] mb-1">Total Posts</p>
                       <p className="text-2xl font-semibold text-[#000000E6]">{totalPosts}</p>
                     </div>
-                    <FileText className="h-8 w-8 text-[#0A66C2]" />
+                    <FiFileText className="h-8 w-8 text-[#0A66C2]" />
                   </div>
                 </CardContent>
               </Card>
@@ -1326,7 +1326,7 @@ export default function Home() {
                       <p className="text-xs text-[#00000099] mb-1">Published</p>
                       <p className="text-2xl font-semibold text-[#057642]">{postedCount}</p>
                     </div>
-                    <Check className="h-8 w-8 text-[#057642]" />
+                    <FiCheck className="h-8 w-8 text-[#057642]" />
                   </div>
                 </CardContent>
               </Card>
@@ -1338,7 +1338,7 @@ export default function Home() {
                       <p className="text-xs text-[#00000099] mb-1">Drafts</p>
                       <p className="text-2xl font-semibold text-[#0A66C2]">{draftCount}</p>
                     </div>
-                    <Clock className="h-8 w-8 text-[#0A66C2]" />
+                    <FiClock className="h-8 w-8 text-[#0A66C2]" />
                   </div>
                 </CardContent>
               </Card>
@@ -1350,7 +1350,7 @@ export default function Home() {
                       <p className="text-xs text-[#00000099] mb-1">Topics Covered</p>
                       <p className="text-2xl font-semibold text-[#000000E6]">{topicsUsed}</p>
                     </div>
-                    <TrendingUp className="h-8 w-8 text-[#FF6B00]" />
+                    <FiTrendingUp className="h-8 w-8 text-[#FF6B00]" />
                   </div>
                 </CardContent>
               </Card>
@@ -1392,7 +1392,7 @@ export default function Home() {
             {filteredHistory.length === 0 ? (
               <Card className="bg-white border border-[#00000014] rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.08)]">
                 <CardContent className="py-16 text-center">
-                  <Clock className="h-16 w-16 text-[#00000014] mx-auto mb-4" />
+                  <FiClock className="h-16 w-16 text-[#00000014] mx-auto mb-4" />
                   <h3 className="text-base font-semibold text-[#000000E6] mb-2">
                     No Posts Yet
                   </h3>
