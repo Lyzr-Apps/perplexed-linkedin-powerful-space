@@ -88,8 +88,6 @@ export default function Home() {
         AGENT_IDS.decisionClarifier
       )
 
-      console.log('Agent Response:', result)
-
       // Always proceed - set decision statement
       setDecisionStatement(initialDecision)
 
@@ -177,8 +175,6 @@ export default function Home() {
 
       const result = await callAIAgent(message, AGENT_IDS.tradeOffMapper)
 
-      console.log('Trade-off Mapper Response:', result)
-
       // Extract options - create default if not provided by agent
       let extractedOptions: Option[] = []
       let extractedPriorities: Priority[] = []
@@ -250,8 +246,6 @@ export default function Home() {
 
       const result = await callAIAgent(message, AGENT_IDS.biasDetector)
 
-      console.log('Bias Detector Response:', result)
-
       // Extract biases - handle different possible structures
       let extractedBiases: Bias[] = []
 
@@ -308,8 +302,6 @@ export default function Home() {
       const message = `Decision: "${decisionStatement}"\n\nUser priorities: ${prioritiesText}\n\nOptions:\n${optionsText}\n\nBased on the user's stated priorities and the pros/cons of each option, provide a clear, context-aware recommendation. Which option is more lucrative or beneficial given their priorities? What specific actions should they take from here? Be direct and actionable - the user wants to know what the most beneficial decision is, not just neutral framing.`
 
       const result = await callAIAgent(message, AGENT_IDS.framingAssistant)
-
-      console.log('Framing Agent Response:', result)
 
       // Initialize framing text
       let framing = ''
