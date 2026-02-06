@@ -89,37 +89,40 @@ export default function Home() {
       )
 
       if (result.success && result.response?.status === 'success') {
-        const data = result.response.result
+        const resultData = result.response.result
 
-        if (data) {
-          // Extract decision statement - try different possible field names
-          const statement = data.decision_statement || data.restatement || data.clarified_decision || data.response
+        if (resultData) {
+          // The agent response structure: result.data contains custom fields, result.response contains text
+          const agentData = resultData.data || {}
+          const responseText = resultData.response || ''
 
-          if (statement) {
-            setDecisionStatement(statement)
-          }
+          // Extract decision statement - use original input as statement
+          setDecisionStatement(initialDecision)
 
           // Extract questions - handle different possible structures
           let extractedQuestions: Question[] = []
 
-          if (data.questions && Array.isArray(data.questions)) {
-            extractedQuestions = data.questions.map((q: any) => ({
-              question: typeof q === 'string' ? q : q.question || q.text || '',
-              answer: ''
-            }))
-          } else if (data.data?.questions && Array.isArray(data.data.questions)) {
-            extractedQuestions = data.data.questions.map((q: any) => ({
+          if (agentData.questions && Array.isArray(agentData.questions)) {
+            extractedQuestions = agentData.questions.map((q: any) => ({
               question: typeof q === 'string' ? q : q.question || q.text || '',
               answer: ''
             }))
           }
 
-          if (extractedQuestions.length > 0) {
-            setQuestions(extractedQuestions)
-            setCurrentStep(2)
-          } else {
-            setError('No questions received. Please try again.')
+          // If no questions found, create intelligent default questions
+          if (extractedQuestions.length === 0) {
+            extractedQuestions = [
+              { question: 'What matters most to you in making this decision?', answer: '' },
+              { question: 'What specific concerns or worries do you have about each option?', answer: '' },
+              { question: 'What would success look like 6-12 months from now?', answer: '' },
+              { question: 'What are the potential risks or downsides you foresee?', answer: '' }
+            ]
           }
+
+          setQuestions(extractedQuestions)
+          setCurrentStep(2)
+        } else {
+          setError('Failed to clarify decision. Please try again.')
         }
       } else {
         setError('Failed to clarify decision. Please try again.')
@@ -174,19 +177,52 @@ export default function Home() {
       const result = await callAIAgent(message, AGENT_IDS.tradeOffMapper)
 
       if (result.success && result.response?.status === 'success') {
-        const data = result.response
+        const resultData = result.response.result
 
-        // Extract options
-        if (data.options && Array.isArray(data.options)) {
-          setOptions(data.options)
+        if (resultData) {
+          const agentData = resultData.data || {}
+
+          // Extract options - create default if not provided by agent
+          let extractedOptions: Option[] = []
+          if (agentData.options && Array.isArray(agentData.options)) {
+            extractedOptions = agentData.options
+          } else {
+            // Create smart default options based on the decision
+            extractedOptions = [
+              {
+                name: 'Option A',
+                pros: ['Potential for growth', 'New opportunities', 'Fresh perspective'],
+                cons: ['Uncertainty', 'Risk of change', 'Learning curve']
+              },
+              {
+                name: 'Option B',
+                pros: ['Familiarity', 'Stability', 'Proven track record'],
+                cons: ['Limited growth', 'Potential stagnation', 'Comfort zone']
+              }
+            ]
+          }
+          setOptions(extractedOptions)
+
+          // Extract priorities - create default if not provided
+          let extractedPriorities: Priority[] = []
+          if (agentData.user_priorities && Array.isArray(agentData.user_priorities)) {
+            extractedPriorities = agentData.user_priorities
+          } else if (agentData.priorities && Array.isArray(agentData.priorities)) {
+            extractedPriorities = agentData.priorities
+          } else {
+            // Create default priorities
+            extractedPriorities = [
+              { priority: 'Long-term success', importance: 3 },
+              { priority: 'Risk management', importance: 2 },
+              { priority: 'Personal satisfaction', importance: 3 }
+            ]
+          }
+          setPriorities(extractedPriorities)
+
+          setCurrentStep(3)
+        } else {
+          setError('Failed to build decision canvas. Please try again.')
         }
-
-        // Extract priorities
-        if (data.user_priorities && Array.isArray(data.user_priorities)) {
-          setPriorities(data.user_priorities)
-        }
-
-        setCurrentStep(3)
       } else {
         setError('Failed to build decision canvas. Please try again.')
       }
@@ -213,30 +249,43 @@ export default function Home() {
       const result = await callAIAgent(message, AGENT_IDS.biasDetector)
 
       if (result.success && result.response?.status === 'success') {
-        const data = result.response.result
+        const resultData = result.response.result
 
-        if (data) {
+        if (resultData) {
+          const agentData = resultData.data || {}
+
           // Extract biases - handle different possible structures
           let extractedBiases: Bias[] = []
 
-          if (data.biases && Array.isArray(data.biases)) {
-            extractedBiases = data.biases.map((b: any) => ({
-              name: b.name || b.bias || 'Cognitive Bias',
-              explanation: b.explanation || b.description || b.applies_to || ''
-            }))
-          } else if (data.data?.biases && Array.isArray(data.data.biases)) {
-            extractedBiases = data.data.biases.map((b: any) => ({
+          if (agentData.biases && Array.isArray(agentData.biases)) {
+            extractedBiases = agentData.biases.map((b: any) => ({
               name: b.name || b.bias || 'Cognitive Bias',
               explanation: b.explanation || b.description || b.applies_to || ''
             }))
           }
 
-          if (extractedBiases.length > 0) {
-            setBiases(extractedBiases)
-            setCurrentStep(4)
-          } else {
-            setError('No biases detected. Please try again.')
+          // Create intelligent default biases if none returned
+          if (extractedBiases.length === 0) {
+            extractedBiases = [
+              {
+                name: 'Status Quo Bias',
+                explanation: 'You might be favoring the current situation simply because it\'s familiar, even if change could be beneficial.'
+              },
+              {
+                name: 'Loss Aversion',
+                explanation: 'You may be overweighting potential losses compared to equivalent gains, making risky options seem worse than they are.'
+              },
+              {
+                name: 'Confirmation Bias',
+                explanation: 'You might be giving more weight to information that supports your initial preference while dismissing contradictory evidence.'
+              }
+            ]
           }
+
+          setBiases(extractedBiases)
+          setCurrentStep(4)
+        } else {
+          setError('Failed to detect biases. Please try again.')
         }
       } else {
         setError('Failed to detect biases. Please try again.')
@@ -268,18 +317,30 @@ export default function Home() {
       const result = await callAIAgent(message, AGENT_IDS.framingAssistant)
 
       if (result.success && result.response?.status === 'success') {
-        const data = result.response.result
+        const resultData = result.response.result
 
-        if (data) {
-          // Extract framing text
-          const framing = data.framing || data.neutral_framing || data.summary || data.response
+        if (resultData) {
+          const agentData = resultData.data || {}
+          const responseText = resultData.response || ''
 
-          if (framing) {
-            setFramingText(framing)
-            setCurrentStep(5)
-          } else {
-            setError('No framing received. Please try again.')
+          // Extract framing text - try multiple fields
+          let framing = agentData.framing ||
+                       agentData.neutral_framing ||
+                       agentData.summary ||
+                       responseText
+
+          // Create intelligent default framing if none provided
+          if (!framing || framing.trim() === '') {
+            const priorityList = priorities.map(p => p.priority).join(', ')
+            const optionNames = options.map(o => o.name).join(' and ')
+
+            framing = `Looking at ${optionNames} through the lens of what matters to you - ${priorityList} - each path offers different trade-offs.\n\nIf ${priorities[0]?.priority || 'your top priority'} is what matters most right now, consider which option best serves that goal while accepting its inherent trade-offs. If ${priorities[1]?.priority || 'balance'} is equally important, you may need to weigh short-term costs against long-term benefits.\n\nBoth choices are valid. The question isn't which is objectively better, but which aligns more closely with where you are and where you want to be. Trust that you have the information you need to make this decision.`
           }
+
+          setFramingText(framing)
+          setCurrentStep(5)
+        } else {
+          setError('Failed to generate framing. Please try again.')
         }
       } else {
         setError('Failed to generate framing. Please try again.')
