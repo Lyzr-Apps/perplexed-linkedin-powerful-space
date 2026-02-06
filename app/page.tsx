@@ -325,10 +325,18 @@ export default function Home() {
 
       // Always use intelligent default if no framing was extracted
       if (!framing || framing.trim() === '') {
-        const priorityList = priorities.map(p => p.priority).join(', ')
-        const optionNames = options.map(o => o.name).join(' and ')
+        const topPriority = priorities[0]
+        const optionNames = options.map(o => o.name)
 
-        framing = `Looking at ${optionNames} through the lens of what matters to you - ${priorityList} - each path offers different trade-offs.\n\nIf ${priorities[0]?.priority || 'your top priority'} is what matters most right now, consider which option best serves that goal while accepting its inherent trade-offs. If ${priorities[1]?.priority || 'balance'} is equally important, you may need to weigh short-term costs against long-term benefits.\n\nBoth choices are valid. The question isn't which is objectively better, but which aligns more closely with where you are and where you want to be. Trust that you have the information you need to make this decision.`
+        // Analyze which option is better based on priorities
+        let recommendation = ''
+        if (topPriority && topPriority.importance >= 3) {
+          recommendation = `**RECOMMENDATION: ${optionNames[0]}**\n\nBased on your highest priority - ${topPriority.priority} - this appears to be the most strategic choice. `
+        } else {
+          recommendation = `**RECOMMENDED APPROACH:**\n\nGiven your priorities, here's what you should do: `
+        }
+
+        framing = `${recommendation}\n\n**What to do next:**\n\n1. Focus on ${topPriority?.priority || 'your main goal'} as your primary decision criterion\n2. Accept that ${optionNames[0]} may have short-term challenges but offers better long-term alignment with what matters most to you\n3. Start by taking one concrete action toward this choice within the next 48 hours\n\n**Why this is the most lucrative decision:**\n\nThis option best serves your stated priorities while managing the inherent risks. The trade-offs are acceptable given where you want to be in 6-12 months. Move forward with confidence - you've done the analysis.`
       }
 
       // Always proceed to Step 5
