@@ -88,25 +88,19 @@ export default function Home() {
         AGENT_IDS.decisionClarifier
       )
 
-      // Debug: log the full response to console
-      console.log('Decision Clarifier Response:', JSON.stringify(result, null, 2))
-
       if (result.success && result.response?.status === 'success') {
         const resultData = result.response.result
 
         if (resultData) {
-          // The agent response structure: result.data contains custom fields, result.response contains text
-          const agentData = resultData.data || {}
-          const responseText = resultData.response || ''
-
           // Extract decision statement - use original input as statement
           setDecisionStatement(initialDecision)
 
           // Extract questions - handle different possible structures
+          // The API normalizes responses so custom fields are directly on resultData
           let extractedQuestions: Question[] = []
 
-          if (agentData.questions && Array.isArray(agentData.questions)) {
-            extractedQuestions = agentData.questions.map((q: any) => ({
+          if (resultData.questions && Array.isArray(resultData.questions)) {
+            extractedQuestions = resultData.questions.map((q: any) => ({
               question: typeof q === 'string' ? q : q.question || q.text || '',
               answer: ''
             }))
@@ -183,12 +177,10 @@ export default function Home() {
         const resultData = result.response.result
 
         if (resultData) {
-          const agentData = resultData.data || {}
-
           // Extract options - create default if not provided by agent
           let extractedOptions: Option[] = []
-          if (agentData.options && Array.isArray(agentData.options)) {
-            extractedOptions = agentData.options
+          if (resultData.options && Array.isArray(resultData.options)) {
+            extractedOptions = resultData.options
           } else {
             // Create smart default options based on the decision
             extractedOptions = [
@@ -208,10 +200,10 @@ export default function Home() {
 
           // Extract priorities - create default if not provided
           let extractedPriorities: Priority[] = []
-          if (agentData.user_priorities && Array.isArray(agentData.user_priorities)) {
-            extractedPriorities = agentData.user_priorities
-          } else if (agentData.priorities && Array.isArray(agentData.priorities)) {
-            extractedPriorities = agentData.priorities
+          if (resultData.user_priorities && Array.isArray(resultData.user_priorities)) {
+            extractedPriorities = resultData.user_priorities
+          } else if (resultData.priorities && Array.isArray(resultData.priorities)) {
+            extractedPriorities = resultData.priorities
           } else {
             // Create default priorities
             extractedPriorities = [
@@ -255,13 +247,11 @@ export default function Home() {
         const resultData = result.response.result
 
         if (resultData) {
-          const agentData = resultData.data || {}
-
           // Extract biases - handle different possible structures
           let extractedBiases: Bias[] = []
 
-          if (agentData.biases && Array.isArray(agentData.biases)) {
-            extractedBiases = agentData.biases.map((b: any) => ({
+          if (resultData.biases && Array.isArray(resultData.biases)) {
+            extractedBiases = resultData.biases.map((b: any) => ({
               name: b.name || b.bias || 'Cognitive Bias',
               explanation: b.explanation || b.description || b.applies_to || ''
             }))
@@ -323,14 +313,13 @@ export default function Home() {
         const resultData = result.response.result
 
         if (resultData) {
-          const agentData = resultData.data || {}
-          const responseText = resultData.response || ''
-
           // Extract framing text - try multiple fields
-          let framing = agentData.framing ||
-                       agentData.neutral_framing ||
-                       agentData.summary ||
-                       responseText
+          let framing = resultData.framing ||
+                       resultData.neutral_framing ||
+                       resultData.summary ||
+                       resultData.text ||
+                       result.response.message ||
+                       ''
 
           // Create intelligent default framing if none provided
           if (!framing || framing.trim() === '') {
