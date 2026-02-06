@@ -1,0 +1,89 @@
+{
+  "agent_name": "Research & Content Manager",
+  "agent_id": "69858425b90162af337b1e15",
+  "agent_purpose": "workflow_coordination",
+  "description": "Schema for coordinated workflow results aggregating research and content generation",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "workflow_stage": "string",
+      "research_summary": {
+        "topic": "string",
+        "key_findings": [
+          "string"
+        ],
+        "sources_count": "number"
+      },
+      "generated_content": {
+        "post_preview": "string",
+        "style": "string",
+        "word_count": "number",
+        "citations_count": "number"
+      },
+      "ready_for_review": "boolean",
+      "next_action": "string"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "workflow_stage": "completed",
+      "research_summary": {
+        "topic": "Current Generative AI Trends in the Technology Industry (2024)",
+        "key_findings": [
+          "Generative AI adoption is expected to reach 75% of organizations by the end of 2024.",
+          "Key use-cases include content creation, marketing automation, and personalized customer experiences.",
+          "Major shifts include increased regulatory scrutiny and ethical considerations in AI deployment."
+        ],
+        "sources_count": 3
+      },
+      "generated_content": {
+        "post_preview": "\ud83d\ude80 Generative AI is reshaping the technology landscape in 2024. Here\u2019s what every tech professional should know:\n\n- 75% of organizations are expected to adopt generative AI by the end of this year...",
+        "style": "data-driven",
+        "word_count": 160,
+        "citations_count": 3
+      },
+      "ready_for_review": true,
+      "next_action": "User should review and approve/edit content before publishing"
+    },
+    "metadata": {
+      "agent_name": "Research & Content Manager",
+      "timestamp": "2024-06-21T05:12:22Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:06:09.515747",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "workflow_stage": "completed",
+      "research_summary": {
+        "topic": "Current Generative AI Trends in the Technology Industry (2024)",
+        "key_findings": [
+          "Generative AI adoption is expected to reach 75% of organizations by the end of 2024.",
+          "Key use-cases include content creation, marketing automation, and personalized customer experiences.",
+          "Major shifts include increased regulatory scrutiny and ethical considerations in AI deployment."
+        ],
+        "sources_count": 3
+      },
+      "generated_content": {
+        "post_preview": "\ud83d\ude80 Generative AI is reshaping the technology landscape in 2024. Here\u2019s what every tech professional should know:\n\n- 75% of organizations are expected to adopt generative AI by the end of this year...",
+        "style": "data-driven",
+        "word_count": 160,
+        "citations_count": 3
+      },
+      "ready_for_review": true,
+      "next_action": "User should review and approve/edit content before publishing"
+    },
+    "metadata": {
+      "agent_name": "Research & Content Manager",
+      "timestamp": "2024-06-21T05:12:22Z"
+    }
+  },
+  "test_passed": true
+}

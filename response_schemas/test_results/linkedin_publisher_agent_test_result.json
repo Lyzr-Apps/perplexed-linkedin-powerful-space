@@ -1,0 +1,15 @@
+{
+  "agent_name": "LinkedIn Publisher Agent",
+  "agent_id": "6985843c1caa4e686dd66d65",
+  "test_message": "Post this content to LinkedIn: \"Excited to share insights on the future of AI in enterprise software. The convergence of LLMs and traditional systems is creating unprecedented opportunities for innovation. #AI #TechLeadership\"",
+  "expected_purpose": "publishing",
+  "timestamp": "2026-02-06T06:07:23.237328",
+  "is_valid_json": false,
+  "validation_errors": [
+    "Response is not valid JSON: Expecting value: line 1 column 1 (char 0)"
+  ],
+  "actual_response": {
+    "raw_text": "```json\n{\n  \"status\": \"success\",\n  \"result\": {\n    \"publishing_status\": \"posted\",\n    \"post_id\": \"urn:li:share:7241298745\",\n    \"post_url\": \"https://www.linkedin.com/feed/update/urn:li:share:7241298745\",\n    \"content_preview\": \"Excited to share insights on the future of AI in enterprise software. The convergence of LLMs and traditi\",\n    \"timestamp\": \"2024-06-10T18:05:23Z\",\n    \"message\": \"Successfully posted to LinkedIn\"\n  }\n}\n```"
+  },
+  "raw_response": "```json\n{\n  \"status\": \"success\",\n  \"result\": {\n    \"publishing_status\": \"posted\",\n    \"post_id\": \"urn:li:share:7241298745\",\n    \"post_url\": \"https://www.linkedin.com/feed/update/urn:li:share:7241298745\",\n    \"content_preview\": \"Excited to share insights on the future of AI in enterprise software. The convergence of LLMs and traditi\",\n    \"timestamp\": \"2024-06-10T18:05:23Z\",\n    \"message\": \"Successfully posted to LinkedIn\"\n  }\n}\n```"
+}

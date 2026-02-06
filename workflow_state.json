@@ -1,0 +1,48 @@
+{
+  "workflow_name": "LinkedIn Content Studio",
+  "workflow_type": "Hybrid (Manager-Subagent + Independent Agent)",
+  "created_at": "2026-02-06T00:00:00Z",
+  "agents": {
+    "manager": {
+      "agent_id": "69858425b90162af337b1e15",
+      "name": "Research & Content Manager",
+      "type": "Manager",
+      "provider": "OpenAI",
+      "model": "gpt-4.1"
+    },
+    "sub_agents": [
+      {
+        "agent_id": "698583f19ccc65e46e9a5ecd",
+        "name": "Topic Research Agent",
+        "type": "Sub-Agent",
+        "provider": "Perplexity",
+        "model": "sonar-pro"
+      },
+      {
+        "agent_id": "6985840b2237a2c55706afcf",
+        "name": "Script Generation Agent",
+        "type": "Sub-Agent",
+        "provider": "OpenAI",
+        "model": "gpt-4.1"
+      }
+    ],
+    "independent": [
+      {
+        "agent_id": "6985843c1caa4e686dd66d65",
+        "name": "LinkedIn Publisher Agent",
+        "type": "Independent",
+        "provider": "OpenAI",
+        "model": "gpt-4.1",
+        "integrations": ["LinkedIn (Composio)"]
+      }
+    ]
+  },
+  "workflow_state": "complete",
+  "total_agents": 4,
+  "agent_ids": [
+    "69858425b90162af337b1e15",
+    "698583f19ccc65e46e9a5ecd",
+    "6985840b2237a2c55706afcf",
+    "6985843c1caa4e686dd66d65"
+  ]
+}

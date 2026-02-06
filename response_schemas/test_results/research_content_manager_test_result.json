@@ -1,0 +1,37 @@
+{
+  "agent_name": "Research & Content Manager",
+  "agent_id": "69858425b90162af337b1e15",
+  "test_message": "Generate a LinkedIn post about generative AI trends in the technology industry using a data-driven style",
+  "expected_purpose": "orchestration",
+  "timestamp": "2026-02-06T06:06:09.515243",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "workflow_stage": "completed",
+      "research_summary": {
+        "topic": "Current Generative AI Trends in the Technology Industry (2024)",
+        "key_findings": [
+          "Generative AI adoption is expected to reach 75% of organizations by the end of 2024.",
+          "Key use-cases include content creation, marketing automation, and personalized customer experiences.",
+          "Major shifts include increased regulatory scrutiny and ethical considerations in AI deployment."
+        ],
+        "sources_count": 3
+      },
+      "generated_content": {
+        "post_preview": "\ud83d\ude80 Generative AI is reshaping the technology landscape in 2024. Here\u2019s what every tech professional should know:\n\n- 75% of organizations are expected to adopt generative AI by the end of this year...",
+        "style": "data-driven",
+        "word_count": 160,
+        "citations_count": 3
+      },
+      "ready_for_review": true,
+      "next_action": "User should review and approve/edit content before publishing"
+    },
+    "metadata": {
+      "agent_name": "Research & Content Manager",
+      "timestamp": "2024-06-21T05:12:22Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"workflow_stage\": \"completed\",\n    \"research_summary\": {\n      \"topic\": \"Current Generative AI Trends in the Technology Industry (2024)\",\n      \"key_findings\": [\n        \"Generative AI adoption is expected to reach 75% of organizations by the end of 2024.\",\n        \"Key use-cases include content creation, marketing automation, and personalized customer experiences.\",\n        \"Major shifts include increased regulatory scrutiny and ethical considerations in AI deployment.\"\n      ],\n      \"sources_count\": 3\n    },\n    \"generated_content\": {\n      \"post_preview\": \"\ud83d\ude80 Generative AI is reshaping the technology landscape in 2024. Here\u2019s what every tech professional should know:\\n\\n- 75% of organizations are expected to adopt generative AI by the end of this year...\",\n      \"style\": \"data-driven\",\n      \"word_count\": 160,\n      \"citations_count\": 3\n    },\n    \"ready_for_review\": true,\n    \"next_action\": \"User should review and approve/edit content before publishing\"\n  },\n  \"metadata\": {\n    \"agent_name\": \"Research & Content Manager\",\n    \"timestamp\": \"2024-06-21T05:12:22Z\"\n  }\n}"
+}

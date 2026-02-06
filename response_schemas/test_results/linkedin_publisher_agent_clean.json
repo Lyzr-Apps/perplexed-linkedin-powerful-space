@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "result": {
+    "publishing_status": "posted",
+    "post_id": "urn:li:share:7241298745",
+    "post_url": "https://www.linkedin.com/feed/update/urn:li:share:7241298745",
+    "content_preview": "Excited to share insights on the future of AI in enterprise software. The convergence of LLMs and traditi",
+    "timestamp": "2024-06-10T18:05:23Z",
+    "message": "Successfully posted to LinkedIn"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "agent_name": "Script Generation Agent",
+  "agent_id": "6985840b2237a2c55706afcf",
+  "test_message": "Create a thought leadership LinkedIn post about the impact of AI on software development, including citations from recent research",
+  "expected_purpose": "content_generation",
+  "timestamp": "2026-02-06T06:05:35.123100",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "post_content": "AI is rapidly reshaping the landscape of software development, transforming the ways we write, test, and maintain code. As leaders, it\u2019s crucial to reflect on both the opportunities and responsibilities this shift brings.\n\nAccording to a 2023 survey, over 70% of developers have already integrated AI-powered tools into their workflow, reporting significant improvements in productivity and code quality (Stack Overflow, 2023). AI-driven code generation and debugging solutions are accelerating development cycles and enabling teams to focus on solving higher-level problems (IEEE Software, 2023).\n\nYet, this progress raises important questions about maintaining software reliability and addressing potential biases embedded in AI-trained models. Researchers highlight the need for robust testing frameworks and ethical guidelines as AI systems become integral to software engineering processes (Nature, 2023).\n\nAs we navigate this evolving frontier, the industry must prioritize upskilling teams, adopting responsible AI practices, and fostering transparency. Embracing AI not just as a tool, but as a collaborator, will define the next era of software innovation.\n\nHow is your organization leveraging AI in development? What challenges and opportunities do you see on the horizon?\n\n#AI #SoftwareDevelopment #Innovation #TechLeadership",
+      "style_used": "thought leadership",
+      "citations": [
+        {
+          "claim": "Over 70% of developers have already integrated AI-powered tools into their workflow, reporting significant improvements in productivity and code quality.",
+          "source": "Stack Overflow. (2023). Developer Survey Results. https://survey.stackoverflow.co/2023/"
+        },
+        {
+          "claim": "AI-driven code generation and debugging solutions are accelerating development cycles and enabling teams to focus on solving higher-level problems.",
+          "source": "IEEE Software. (2023). The Impact of AI on Software Engineering. https://ieeexplore.ieee.org/document/10058860"
+        },
+        {
+          "claim": "Researchers highlight the need for robust testing frameworks and ethical guidelines as AI systems become integral to software engineering processes.",
+          "source": "Nature. (2023). Machine learning: The future of software development. https://www.nature.com/articles/d41586-023-01412-x"
+        }
+      ],
+      "word_count": 251,
+      "hashtags": [
+        "AI",
+        "SoftwareDevelopment",
+        "Innovation",
+        "TechLeadership"
+      ],
+      "content_warnings": "none",
+      "engagement_hooks": "AI is rapidly reshaping the landscape of software development, transforming the ways we write, test, and maintain code."
+    },
+    "metadata": {
+      "agent_name": "Script Generation Agent",
+      "timestamp": "2024-06-28T13:42:19Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"post_content\": \"AI is rapidly reshaping the landscape of software development, transforming the ways we write, test, and maintain code. As leaders, it\u2019s crucial to reflect on both the opportunities and responsibilities this shift brings.\\n\\nAccording to a 2023 survey, over 70% of developers have already integrated AI-powered tools into their workflow, reporting significant improvements in productivity and code quality (Stack Overflow, 2023). AI-driven code generation and debugging solutions are accelerating development cycles and enabling teams to focus on solving higher-level problems (IEEE Software, 2023).\\n\\nYet, this progress raises important questions about maintaining software reliability and addressing potential biases embedded in AI-trained models. Researchers highlight the need for robust testing frameworks and ethical guidelines as AI systems become integral to software engineering processes (Nature, 2023).\\n\\nAs we navigate this evolving frontier, the industry must prioritize upskilling teams, adopting responsible AI practices, and fostering transparency. Embracing AI not just as a tool, but as a collaborator, will define the next era of software innovation.\\n\\nHow is your organization leveraging AI in development? What challenges and opportunities do you see on the horizon?\\n\\n#AI #SoftwareDevelopment #Innovation #TechLeadership\",\n    \"style_used\": \"thought leadership\",\n    \"citations\": [\n      {\n        \"claim\": \"Over 70% of developers have already integrated AI-powered tools into their workflow, reporting significant improvements in productivity and code quality.\",\n        \"source\": \"Stack Overflow. (2023). Developer Survey Results. https://survey.stackoverflow.co/2023/\"\n      },\n      {\n        \"claim\": \"AI-driven code generation and debugging solutions are accelerating development cycles and enabling teams to focus on solving higher-level problems.\",\n        \"source\": \"IEEE Software. (2023). The Impact of AI on Software Engineering. https://ieeexplore.ieee.org/document/10058860\"\n      },\n      {\n        \"claim\": \"Researchers highlight the need for robust testing frameworks and ethical guidelines as AI systems become integral to software engineering processes.\",\n        \"source\": \"Nature. (2023). Machine learning: The future of software development. https://www.nature.com/articles/d41586-023-01412-x\"\n      }\n    ],\n    \"word_count\": 251,\n    \"hashtags\": [\"AI\", \"SoftwareDevelopment\", \"Innovation\", \"TechLeadership\"],\n    \"content_warnings\": \"none\",\n    \"engagement_hooks\": \"AI is rapidly reshaping the landscape of software development, transforming the ways we write, test, and maintain code.\"\n  },\n  \"metadata\": {\n    \"agent_name\": \"Script Generation Agent\",\n    \"timestamp\": \"2024-06-28T13:42:19Z\"\n  }\n}"
+}

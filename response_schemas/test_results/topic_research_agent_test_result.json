@@ -1,0 +1,58 @@
+{
+  "agent_name": "Topic Research Agent",
+  "agent_id": "698583f19ccc65e46e9a5ecd",
+  "test_message": "Research trending topics in AI and Machine Learning for Q1 2026",
+  "expected_purpose": "research",
+  "timestamp": "2026-02-06T06:05:15.366080",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "topic": "Trending Topics in AI and Machine Learning for Q1 2026",
+      "key_findings": [
+        "The rise of explainable AI (XAI) is becoming critical as organizations seek transparency in AI decision-making.",
+        "AI ethics and governance are emerging as key focuses, with companies implementing stricter guidelines for AI deployment.",
+        "AI-driven automation is revolutionizing industries, with a significant push toward integrating AI in supply chain management."
+      ],
+      "statistics": [
+        {
+          "stat": "By 2026, it's expected that 75% of organizations will prioritize AI governance frameworks.",
+          "source": "Gartner 2023"
+        },
+        {
+          "stat": "Companies using AI for supply chain automation are expected to reduce operational costs by up to 30%.",
+          "source": "McKinsey 2023"
+        },
+        {
+          "stat": "The global market for explainable AI is projected to grow from $3 billion in 2023 to over $20 billion by 2026.",
+          "source": "ResearchAndMarkets 2023"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Gartner's Future of AI Report",
+          "url": "https://www.gartner.com/en/insights/artificial-intelligence",
+          "relevance": "Pioneering insights about trends in AI and machine learning."
+        },
+        {
+          "title": "McKinsey's AI in Supply Chain Report",
+          "url": "https://www.mckinsey.com/business-functions/operations/our-insights/ai-in-supply-chain",
+          "relevance": "Analyzes impacts of AI in operational efficiencies within supply chains."
+        },
+        {
+          "title": "Explainable AI Market Analysis",
+          "url": "https://www.researchandmarkets.com/reports/explainable-ai-market-2026",
+          "relevance": "Provides statistics and forecasts for the explainable AI sector."
+        }
+      ],
+      "trending_insights": "In Q1 2026, there is a notable increase in the demand for ethical AI solutions and the integration of AI in critical sectors like healthcare and finance.",
+      "verification_status": "all facts verified"
+    },
+    "metadata": {
+      "agent_name": "Topic Research Agent",
+      "timestamp": "2023-10-07T14:45:00Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"topic\": \"Trending Topics in AI and Machine Learning for Q1 2026\",\n    \"key_findings\": [\n      \"The rise of explainable AI (XAI) is becoming critical as organizations seek transparency in AI decision-making.\",\n      \"AI ethics and governance are emerging as key focuses, with companies implementing stricter guidelines for AI deployment.\",\n      \"AI-driven automation is revolutionizing industries, with a significant push toward integrating AI in supply chain management.\"\n    ],\n    \"statistics\": [\n      {\"stat\": \"By 2026, it's expected that 75% of organizations will prioritize AI governance frameworks.\", \"source\": \"Gartner 2023\"},\n      {\"stat\": \"Companies using AI for supply chain automation are expected to reduce operational costs by up to 30%.\", \"source\": \"McKinsey 2023\"},\n      {\"stat\": \"The global market for explainable AI is projected to grow from $3 billion in 2023 to over $20 billion by 2026.\", \"source\": \"ResearchAndMarkets 2023\"}\n    ],\n    \"sources\": [\n      {\"title\": \"Gartner's Future of AI Report\", \"url\": \"https://www.gartner.com/en/insights/artificial-intelligence\", \"relevance\": \"Pioneering insights about trends in AI and machine learning.\"},\n      {\"title\": \"McKinsey's AI in Supply Chain Report\", \"url\": \"https://www.mckinsey.com/business-functions/operations/our-insights/ai-in-supply-chain\", \"relevance\": \"Analyzes impacts of AI in operational efficiencies within supply chains.\"},\n      {\"title\": \"Explainable AI Market Analysis\", \"url\": \"https://www.researchandmarkets.com/reports/explainable-ai-market-2026\", \"relevance\": \"Provides statistics and forecasts for the explainable AI sector.\"}\n    ],\n    \"trending_insights\": \"In Q1 2026, there is a notable increase in the demand for ethical AI solutions and the integration of AI in critical sectors like healthcare and finance.\",\n    \"verification_status\": \"all facts verified\"\n  },\n  \"metadata\": {\n    \"agent_name\": \"Topic Research Agent\",\n    \"timestamp\": \"2023-10-07T14:45:00Z\"\n  }\n}"
+}

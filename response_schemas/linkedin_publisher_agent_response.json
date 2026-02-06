@@ -1,0 +1,43 @@
+{
+  "agent_name": "LinkedIn Publisher Agent",
+  "agent_id": "6985843c1caa4e686dd66d65",
+  "agent_purpose": "publishing",
+  "description": "Schema for LinkedIn post publishing confirmation with URL and metadata",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "published": "boolean",
+      "post_url": "string",
+      "post_id": "string",
+      "published_at": "string",
+      "content_preview": "string",
+      "visibility": "string"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "published": true,
+      "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:1234567890123456789/",
+      "post_id": "1234567890123456789",
+      "published_at": "2024-06-28T15:45:00Z",
+      "content_preview": "Excited to share my latest update on professional growth! Looking forward to connect and collaborate...",
+      "visibility": "public"
+    },
+    "metadata": {
+      "agent_name": "LinkedIn Publisher Agent",
+      "timestamp": "2024-06-28T15:45:01Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:07:23.237840",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "raw_text": "```json\n{\n  \"status\": \"success\",\n  \"result\": {\n    \"publishing_status\": \"posted\",\n    \"post_id\": \"urn:li:share:7241298745\",\n    \"post_url\": \"https://www.linkedin.com/feed/update/urn:li:share:7241298745\",\n    \"content_preview\": \"Excited to share insights on the future of AI in enterprise software. The convergence of LLMs and traditi\",\n    \"timestamp\": \"2024-06-10T18:05:23Z\",\n    \"message\": \"Successfully posted to LinkedIn\"\n  }\n}\n```"
+  },
+  "test_passed": false
+}

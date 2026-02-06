@@ -1,0 +1,97 @@
+{
+  "workflow_name": "LinkedIn Content Studio",
+  "workflow_description": "Hybrid workflow for researching topics, generating LinkedIn content, and publishing to LinkedIn",
+  "workflow_type": "Hybrid (Manager-Subagent + Independent Agent)",
+  "nodes": [
+    {
+      "id": "input_node",
+      "type": "Input",
+      "label": "User Input",
+      "nodeCategory": "input",
+      "position": { "x": 100, "y": 200 }
+    },
+    {
+      "id": "manager_agent",
+      "type": "Agent",
+      "label": "Research & Content Manager",
+      "nodeCategory": "agent",
+      "agent_id": "69858425b90162af337b1e15",
+      "position": { "x": 400, "y": 200 }
+    },
+    {
+      "id": "research_agent",
+      "type": "Agent",
+      "label": "Topic Research Agent",
+      "nodeCategory": "agent",
+      "agent_id": "698583f19ccc65e46e9a5ecd",
+      "position": { "x": 400, "y": 350 }
+    },
+    {
+      "id": "script_agent",
+      "type": "Agent",
+      "label": "Script Generation Agent",
+      "nodeCategory": "agent",
+      "agent_id": "6985840b2237a2c55706afcf",
+      "position": { "x": 550, "y": 350 }
+    },
+    {
+      "id": "publisher_agent",
+      "type": "Agent",
+      "label": "LinkedIn Publisher Agent",
+      "nodeCategory": "agent",
+      "agent_id": "6985843c1caa4e686dd66d65",
+      "position": { "x": 700, "y": 200 }
+    },
+    {
+      "id": "output_node",
+      "type": "Output",
+      "label": "Final Output",
+      "nodeCategory": "end",
+      "position": { "x": 1000, "y": 200 }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "input_node",
+      "target": "manager_agent",
+      "label": "Generate Content trigger"
+    },
+    {
+      "id": "e2",
+      "source": "manager_agent",
+      "target": "research_agent",
+      "label": "Delegate research"
+    },
+    {
+      "id": "e3",
+      "source": "manager_agent",
+      "target": "script_agent",
+      "label": "Delegate content creation"
+    },
+    {
+      "id": "e4",
+      "source": "manager_agent",
+      "target": "publisher_agent",
+      "label": "Send for publishing"
+    },
+    {
+      "id": "e5",
+      "source": "publisher_agent",
+      "target": "output_node",
+      "label": "Published confirmation"
+    }
+  ],
+  "agent_relationships": {
+    "manager": {
+      "agent_id": "69858425b90162af337b1e15",
+      "manages": [
+        "698583f19ccc65e46e9a5ecd",
+        "6985840b2237a2c55706afcf"
+      ]
+    },
+    "independent": [
+      "6985843c1caa4e686dd66d65"
+    ]
+  }
+}
