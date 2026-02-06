@@ -110,8 +110,8 @@ export default function Home() {
       // If no questions found, create standardized button-based questions
       if (extractedQuestions.length === 0) {
         extractedQuestions = [
-          { question: 'What matters most to you here?', answer: '' },
-          { question: 'What worries you most about the other option?', answer: '' }
+          { question: 'What matters most to you here? (Select one)', answer: '' },
+          { question: 'What worries you most about the other option? (Select one)', answer: '' }
         ]
       }
 
@@ -203,14 +203,14 @@ export default function Home() {
       if (extractedOptions.length === 0) {
         extractedOptions = [
           {
-            name: 'Forward Move',
-            pros: ['Aligns with long-term goals', 'Potential for significant growth', 'New opportunities'],
-            cons: ['Requires effort and adjustment', 'Some uncertainty', 'May feel uncomfortable at first']
+            name: 'Option A',
+            pros: ['Potential for growth', 'New opportunities', 'Fresh perspective'],
+            cons: ['Uncertainty', 'Risk of change', 'Learning curve']
           },
           {
-            name: 'Safe Move',
-            pros: ['Familiar and comfortable', 'Low immediate risk', 'Requires less change'],
-            cons: ['May limit future opportunities', 'Could lead to regret later', 'Keeps you in comfort zone']
+            name: 'Option B',
+            pros: ['Familiarity', 'Stability', 'Proven track record'],
+            cons: ['Limited growth', 'Potential stagnation', 'Comfort zone']
           }
         ]
       }
@@ -334,7 +334,7 @@ export default function Home() {
         const optionNames = options.map(o => o.name)
 
         // Simple recommendation format
-        framing = `RECOMMENDATION: ${optionNames[0]}\n\nBased on your stated priorities - particularly ${topPriority?.priority || 'your main goals'} - the ${optionNames[0]} aligns better with what matters most to you. While it may involve some uncertainty, it offers stronger potential for long-term satisfaction and growth.\n\nNext step: Take one small action toward ${optionNames[0]} in the next 48 hours.`
+        framing = `RECOMMENDATION: ${optionNames[0]}\n\nBased on your priorities — especially long-term success and personal satisfaction — ${optionNames[0]} aligns better with where you want to be in the next 6–12 months, even though it involves short-term uncertainty.\n\nNext step: Take one small concrete action toward ${optionNames[0]} within the next 48 hours.`
       }
 
       // Always proceed to Step 5
